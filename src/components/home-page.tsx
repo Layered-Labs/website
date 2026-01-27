@@ -55,7 +55,7 @@ export function HomePage({ research }: { research: ResearchItem[] }) {
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <div className="flex items-center justify-between h-16">
             <a href="#" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-black">
-              <Image src="/logo.png" alt="Layered Labs" width={28} height={28} className="rounded" />
+              <Image src="/logo.png" alt="Layered Labs" width={18} height={18} className="rounded p-1" />
               Layered Labs
             </a>
             <div className="hidden md:flex items-center gap-8 text-sm text-black/60">
