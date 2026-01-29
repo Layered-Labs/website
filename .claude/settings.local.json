@@ -3,7 +3,13 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(tree:*)",
+      "WebSearch",
+      "WebFetch(domain:www.onlinewebfonts.com)",
+      "WebFetch(domain:fontsinuse.com)",
+      "WebFetch(domain:openai.com)",
+      "Bash(npx next build:*)"
     ]
   }
 }

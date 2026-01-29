@@ -4,6 +4,7 @@ const tagColors: Record<string, string> = {
   Preprint: "bg-amber-500/10 text-amber-600",
   Survey: "bg-purple-500/10 text-purple-600",
   Workshop: "bg-rose-500/10 text-rose-600",
+  "Blog Post": "bg-violet-500/10 text-violet-600",
 };
 
 const defaultColor = "bg-black/5 text-black/60";

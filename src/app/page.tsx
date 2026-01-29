@@ -1,15 +1,12 @@
-import { getAllResearchPosts } from "@/lib/research";
 import { HomePage } from "@/components/home-page";
+import { getAllResearchPosts } from "@/lib/research";
 
 export default function Home() {
   const posts = getAllResearchPosts();
-
-  const research = posts.map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    date: post.date,
-    tag: post.tag,
-  }));
-
-  return <HomePage research={research} />;
+  // TODO: re-enable these once ready
+  // const hiddenTags = ["Paper", "Technical Report", "Preprint"];
+  const filteredPosts = posts.filter(
+    (p) => !["Paper", "Technical Report", "Preprint"].includes(p.tag)
+  );
+  return <HomePage posts={filteredPosts} />;
 }

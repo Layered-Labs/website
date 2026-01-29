@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { FadeIn } from "@/components/ui/fade-in";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { GridPattern } from "@/components/ui/grid-pattern";
-import { ResearchBadge } from "@/components/ui/research-badge";
 import { ArrowRight, ArrowUpRight, Github, Mail, MapPin } from "lucide-react";
+import type { ResearchPost } from "@/lib/research";
+
+const tagColors: Record<string, string> = {
+  Paper: "bg-emerald-500/10 text-emerald-600",
+  "Technical Report": "bg-blue-500/10 text-blue-600",
+  Preprint: "bg-amber-500/10 text-amber-600",
+  "Blog Post": "bg-violet-500/10 text-violet-600",
+};
+
+const defaultTagColor = "bg-black/5 text-black/60";
 
 const projects = [
   {
@@ -15,39 +23,22 @@ const projects = [
     description:
       "Simple, unified API access to small, specialized LLMs. One endpoint, multiple models, optimized for healthcare applications.",
     status: "Live",
-    link: "#",
   },
   {
     name: "Clinical Synthetic Gen",
     description:
       "Pipeline for generating high-quality single-turn Patient-Doctor Q&A synthetic data for training and evaluation of small, open-source LLMs.",
     status: "In Development",
-    link: "#",
-  },
-  {
-    name: "Benchbase",
-    description:
-      "Frictionless and scalable medical benchmarks. Evaluate your models against clinical standards with minimal setup.",
-    status: "Coming Soon",
-    link: "#",
   },
   {
     name: "Constraints",
     description:
       "Research into defining and enforcing structured constraints in LLM outputs for reliable clinical applications.",
     status: "Research",
-    link: "#",
   },
 ];
 
-interface ResearchItem {
-  slug: string;
-  title: string;
-  date: string;
-  tag: string;
-}
-
-export function HomePage({ research }: { research: ResearchItem[] }) {
+export function HomePage({ posts }: { posts: ResearchPost[] }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -183,7 +174,7 @@ export function HomePage({ research }: { research: ResearchItem[] }) {
                     <p className="text-sm text-black/50 mt-1">HF Dataset Downloads</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold text-black">4</p>
+                    <p className="text-3xl font-semibold text-black">3</p>
                     <p className="text-sm text-black/50 mt-1">Active Projects</p>
                   </div>
                 </div>
@@ -211,9 +202,8 @@ export function HomePage({ research }: { research: ResearchItem[] }) {
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
               <FadeIn key={project.name} delay={0.1 + index * 0.1}>
-                <a
-                  href={project.link}
-                  className="group block p-8 bg-white rounded-2xl border border-black/5 hover:border-black/10 hover:shadow-lg hover:shadow-black/5 transition-all duration-300"
+                <div
+                  className="block p-8 bg-white rounded-2xl border border-black/5 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <span
@@ -228,15 +218,14 @@ export function HomePage({ research }: { research: ResearchItem[] }) {
                     >
                       {project.status}
                     </span>
-                    <ArrowUpRight className="w-5 h-5 text-black/30 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-black/70 transition-colors">
+                  <h3 className="text-xl font-semibold mb-3 text-black">
                     {project.name}
                   </h3>
                   <p className="text-black/60 leading-relaxed">
                     {project.description}
                   </p>
-                </a>
+                </div>
               </FadeIn>
             ))}
           </div>
@@ -258,24 +247,29 @@ export function HomePage({ research }: { research: ResearchItem[] }) {
             </h2>
           </FadeIn>
 
-          <div className="space-y-0 divide-y divide-black/10">
-            {research.map((paper, index) => (
-              <FadeIn key={paper.slug} delay={0.1 + index * 0.1}>
-                <Link
-                  href={`/research/${paper.slug}`}
-                  className="group flex flex-col md:flex-row md:items-center justify-between py-8 hover:bg-black/[0.02] -mx-4 px-4 rounded-lg transition-colors"
+          <div>
+            {posts.map((post, index) => (
+              <FadeIn key={post.slug} delay={0.2 + index * 0.1}>
+                <a
+                  href={`/research/${post.slug}`}
+                  className="flex items-center gap-4 py-6 group"
                 >
-                  <div className="flex items-start gap-4 mb-4 md:mb-0">
-                    <ResearchBadge tag={paper.tag} />
-                    <h3 className="text-lg font-medium text-black group-hover:text-black/60 transition-colors">
-                      {paper.title}
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-4 text-black/50">
-                    <span className="text-sm">{paper.date}</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </Link>
+                  <span
+                    className={`shrink-0 text-xs font-medium px-3 py-1 rounded-full ${tagColors[post.tag] ?? defaultTagColor}`}
+                  >
+                    {post.tag}
+                  </span>
+                  <h3 className="text-lg font-semibold text-black group-hover:text-black/70 transition-colors flex-1 min-w-0">
+                    {post.title}
+                  </h3>
+                  <span className="shrink-0 text-sm text-black/30 font-mono hidden sm:block">
+                    {post.date}
+                  </span>
+                  <ArrowUpRight className="shrink-0 w-4 h-4 text-black/30 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </a>
+                {index < posts.length - 1 && (
+                  <div className="border-b border-black/5" />
+                )}
               </FadeIn>
             ))}
           </div>
