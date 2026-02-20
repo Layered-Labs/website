@@ -19,21 +19,21 @@ const defaultTagColor = "bg-black/5 text-black/60";
 
 const projects = [
   {
-    name: "OpenUnits",
+    name: "Health Companion",
     description:
-      "Simple, unified API access to small, specialized LLMs. One endpoint, multiple models, optimized for healthcare applications.",
-    status: "Live",
-  },
-  {
-    name: "Clinical Synthetic Gen",
-    description:
-      "Pipeline for generating high-quality single-turn Patient-Doctor Q&A synthetic data for training and evaluation of small, open-source LLMs.",
+      "A local-first app that tracks medications, symptoms, and health events over time. Patients arrive at every visit with a structured summary. Clinicians gain longitudinal context they have never had access to before.",
     status: "In Development",
   },
   {
-    name: "Constraints",
+    name: "NYC Clinic AI Infrastructure",
     description:
-      "Research into defining and enforcing structured constraints in LLM outputs for reliable clinical applications.",
+      "Published dataset and interactive map evaluating broadband and electricity infrastructure across all 311 NYC ZIP codes, identifying where on-premise clinical AI can be deployed today.",
+    status: "Live",
+  },
+  {
+    name: "Longitudinal Summarization",
+    description:
+      "Research into how open-source models reason over structured patient state: measuring hallucination rates, temporal consistency, and summarization quality across extended time horizons.",
     status: "Research",
   },
 ];
@@ -92,16 +92,17 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
 
             <BlurFade delay={0.2} inView>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-8 text-black">
-                Building open-source
+                Health is continuous.
                 <br />
-                <span className="text-black/40">AI for health</span>
+                <span className="text-black/40">Care should be too.</span>
               </h1>
             </BlurFade>
 
             <BlurFade delay={0.3} inView>
               <p className="text-xl md:text-2xl text-black/60 leading-relaxed mb-12 max-w-2xl">
-                We develop and deploy small, efficient language models purpose-built
-                for healthcare. Open-source. Research-driven. Production-ready.
+                We build open-source AI systems that maintain structured patient
+                state across time, so every clinical visit begins with the full
+                picture.
               </p>
             </BlurFade>
 
@@ -141,25 +142,26 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <FadeIn delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-black">
-                Making AI accessible, transparent, and effective for healthcare
+                Continuity is the missing layer in clinical AI
               </h2>
             </FadeIn>
 
             <div className="space-y-6">
               <FadeIn delay={0.2}>
                 <p className="text-lg text-black/60 leading-relaxed">
-                  Large language models are transforming healthcare, but their size,
-                  cost, and opacity create barriers. We believe the future lies in
-                  smaller, specialized models that can be deployed anywhere—from
-                  hospital servers to edge devices.
+                  Medicine is practiced as a series of isolated visits. Patient
+                  history is fragmented across systems, recalled from memory, and
+                  lost between providers. Most AI in healthcare makes this worse
+                  by treating each interaction as if it is the first.
                 </p>
               </FadeIn>
 
               <FadeIn delay={0.3}>
                 <p className="text-lg text-black/60 leading-relaxed">
-                  Our research focuses on distillation, efficient architectures, and
-                  domain-specific training to create models that are not just
-                  smaller, but better suited for clinical applications.
+                  We build tools that maintain structured longitudinal patient
+                  state and study how open-source models can reason over that
+                  state reliably. The product is both a patient tool and a
+                  research surface.
                 </p>
               </FadeIn>
 
@@ -171,11 +173,11 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                   </div>
                   <div>
                     <p className="text-3xl font-semibold text-black">450+</p>
-                    <p className="text-sm text-black/50 mt-1">HF Dataset Downloads</p>
+                    <p className="text-sm text-black/50 mt-1">Dataset Downloads</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold text-black">3</p>
-                    <p className="text-sm text-black/50 mt-1">Active Projects</p>
+                    <p className="text-3xl font-semibold text-black">311</p>
+                    <p className="text-sm text-black/50 mt-1">NYC ZIP Codes Mapped</p>
                   </div>
                 </div>
               </FadeIn>
@@ -289,14 +291,15 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
 
               <FadeIn delay={0.1}>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
-                  Let&apos;s build the future of healthcare AI together
+                  Interested in the work?
                 </h2>
               </FadeIn>
 
               <FadeIn delay={0.2}>
                 <p className="text-lg text-white/60 leading-relaxed mb-8">
-                  Whether you&apos;re a researcher, healthcare provider, or investor
-                  interested in our mission, we&apos;d love to hear from you.
+                  Whether you are a patient interested in early access, a
+                  clinician who wants to collaborate, or a researcher working on
+                  adjacent problems, we would love to hear from you.
                 </p>
               </FadeIn>
 
