@@ -9,7 +9,7 @@ import type { ResearchPost } from "@/lib/research";
 
 const tagColors: Record<string, string> = {
   Paper: "bg-emerald-500/10 text-emerald-600",
-  "Technical Report": "bg-sky-500/10 text-sky-600",
+  Dataset: "bg-sky-500/10 text-sky-600",
   Preprint: "bg-amber-500/10 text-amber-600",
   "Blog Post": "bg-violet-500/10 text-violet-600",
 };
@@ -66,8 +66,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-36 pb-28 overflow-hidden bg-gradient-to-b from-sky-50/50 via-white to-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.08),transparent)]" />
+      <section className="relative pt-36 pb-28 overflow-hidden">
         <div className="relative max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <div className="max-w-3xl">
             <BlurFade delay={0.05} inView>
@@ -81,7 +80,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.08] mb-7 text-black">
                 Health is continuous.
                 <br />
-                <span className="bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">
+                <span className="text-sky-500">
                   Care should be too.
                 </span>
               </h1>
@@ -157,15 +156,15 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               <FadeIn delay={0.4}>
                 <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black/8">
                   <div>
-                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">100%</p>
+                    <p className="text-3xl font-semibold text-sky-500">100%</p>
                     <p className="text-sm text-black/50 mt-1">Open Source</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">450+</p>
+                    <p className="text-3xl font-semibold text-sky-500">450+</p>
                     <p className="text-sm text-black/50 mt-1">Dataset Downloads</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">311</p>
+                    <p className="text-3xl font-semibold text-sky-500">311</p>
                     <p className="text-sm text-black/50 mt-1">NYC ZIP Codes Mapped</p>
                   </div>
                 </div>

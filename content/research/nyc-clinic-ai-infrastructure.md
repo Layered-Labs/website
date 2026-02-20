@@ -2,7 +2,7 @@
 title: "Mapping AI Deployment Readiness Across NYC Community Clinics"
 description: "A dataset and interactive map evaluating broadband and electricity infrastructure across all 311 NYC ZIP codes to identify where on-premise clinical AI can be deployed today."
 date: "2026-02-19"
-tag: "Technical Report"
+tag: "Dataset"
 ---
 
 ## Overview
