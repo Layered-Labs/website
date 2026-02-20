@@ -1,51 +1,21 @@
 ---
-title: "Constraints"
-description: "Evaluating how well open-source and closed-source LLMs perform on tasks with real-world constraints."
-date: "2025-03-28"
+title: "What We Mean by Longitudinal Patient State"
+description: "A precise definition of the structured state object at the center of the health companion and our research agenda."
+date: "2026-01-05"
 tag: "Blog Post"
 ---
 
-## The Problem
+The term longitudinal patient state gets used loosely. Here is what we mean precisely.
 
-Real-world decisions involve juggling multiple constraints simultaneously: budgets, availability, preferences, regulations. It's unclear how well current LLMs handle this kind of multi-constraint reasoning compared to human decision-making.
+A longitudinal patient state object is a structured, time-stamped record of clinically relevant events and derived summaries for a single patient. It is not a transcript. It is not a medical record in the traditional sense. It is a living data structure that updates with each new event and supports deterministic querying.
 
-When you ask a model to plan a meal within a budget, schedule a trip with layover limits, or recommend a treatment plan respecting drug interactions and patient allergies, you're asking it to satisfy multiple constraints at once. This is fundamentally different from open-ended generation.
+At minimum, a state object contains:
 
-## Our Evaluation
+- **Medications**: name, dose, frequency, start date, adherence log
+- **Symptoms**: name, severity scale, first logged date, trend over last N days
+- **Events**: visit dates, notable changes, free-text notes (bounded length)
+- **Metadata**: last updated timestamp, data version, patient-set privacy flags
 
-We designed a benchmark to systematically evaluate constraint-following capabilities across both open-source and closed-source LLMs. The benchmark covers several categories:
+This structure is intentionally narrow. It does not try to represent everything in a full EHR. It represents what a patient can self-report on a daily basis and what a clinician needs to contextualize a follow-up visit.
 
-### Constraint Types
-
-- **Numerical constraints**: Budget limits, quantity restrictions, time windows
-- **Logical constraints**: Mutual exclusions, conditional requirements, ordering rules
-- **Domain constraints**: Medical protocols, regulatory requirements, safety guidelines
-- **Preference constraints**: Soft preferences that should be satisfied when possible
-
-### Models Evaluated
-
-We tested a range of models across the size spectrum:
-
-- Large closed-source models (GPT-4, Claude)
-- Medium open-source models (Llama 3, Mistral)
-- Small specialized models (our fine-tuned healthcare models)
-
-## Key Findings
-
-1. **Constraint count matters**: All models show degraded performance as the number of simultaneous constraints increases, but the rate of degradation varies significantly
-2. **Domain specialization helps**: Small models fine-tuned on constraint-heavy domains outperform larger general-purpose models on domain-specific constraint tasks
-3. **Implicit vs. explicit**: Models handle explicitly stated constraints much better than constraints that must be inferred from context
-4. **Conflict resolution**: When constraints conflict, models rarely acknowledge the conflict. They silently drop constraints instead.
-
-## Why It Matters for Healthcare
-
-Understanding constraint-following capabilities is critical for deploying LLMs in domains like healthcare, where decisions must respect strict protocols, resource limitations, and patient-specific requirements.
-
-A model that silently drops a drug interaction constraint or ignores a dosage limit is not just unhelpful, it's dangerous. Our work helps identify where current models fall short so we can build targeted improvements.
-
-## What's Next
-
-We're extending this work in two directions:
-
-- **Constraint-aware fine-tuning**: Training models to explicitly track and verify constraints during generation
-- **Benchmark expansion**: Adding more healthcare-specific constraint scenarios based on real clinical decision-making workflows
+The state schema is open and will be published as part of the health companion release. We invite feedback from clinicians and researchers on what fields are missing or miscalibrated.

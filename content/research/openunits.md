@@ -1,48 +1,25 @@
 ---
-title: "OpenUnits"
-description: "A unified API for accessing multiple small, specialized language models through a single endpoint."
-date: "2025-04-10"
+title: "Research Agenda: Evaluating Open-Source Models on Longitudinal State Reasoning"
+description: "The questions we are working to answer about how open-source models perform on structured longitudinal patient data."
+date: "2025-12-20"
 tag: "Blog Post"
 ---
 
-## The Problem
+Our research agenda centers on a set of empirical questions that existing clinical NLP benchmarks do not answer.
 
-Researchers working with small models face friction when switching between different model APIs, configurations, and hosting setups. There's no simple way to experiment with and compare multiple small models efficiently.
+**Can open-source models reason accurately over structured longitudinal patient state?**
+We are building synthetic trajectory datasets to evaluate this directly, across multiple model families and parameter sizes.
 
-Every model provider has its own SDK, authentication flow, and request format. For researchers who need to rapidly iterate across multiple small, specialized models, comparing outputs, benchmarking latency, and evaluating quality, this fragmentation creates significant overhead that slows down experimentation.
+**How do base models compare to instruction-tuned models on state summarization?**
+Instruction tuning optimizes for conversational fluency, which may not align with the precision required for clinical summarization. We will evaluate both.
 
-## What is OpenUnits?
+**What is the minimum model size for clinically acceptable longitudinal summarization?**
+Smaller models can run on-device. If a 1-3B parameter model meets a quality threshold for structured state summarization, local deployment becomes tractable without expensive hardware.
 
-OpenUnits is a unified API that gives you access to multiple small, specialized language models through a single endpoint. One API key, one request format, multiple models, all optimized for healthcare applications.
+**How does hallucination rate change as state complexity grows?**
+A patient with two medications and one symptom is easy. A patient with twelve medications, multiple comorbidities, and two years of logs is harder. We want to know where models break.
 
-Instead of integrating with each model provider individually, researchers can:
+**Can fine-tuning on synthetic longitudinal trajectories improve performance?**
+We plan to fine-tune small open-source models on our synthetic dataset and measure the delta. This is the path toward a purpose-built longitudinal summarizer.
 
-- **Switch between models** with a single parameter change
-- **Compare outputs** across models using consistent request/response formats
-- **Benchmark performance** with built-in latency and quality metrics
-- **Deploy pipelines** that route to the best model for each task
-
-## Architecture
-
-OpenUnits sits between your application and the underlying model providers:
-
-1. **Unified Request Layer**: Accepts a standardized request format and translates it to each provider's native API
-2. **Model Registry**: Maintains metadata about available models, their capabilities, and optimal use cases
-3. **Response Normalization**: Ensures consistent output formatting regardless of the underlying model
-4. **Metrics Collection**: Tracks latency, token usage, and quality signals across all requests
-
-## Why It Matters for Healthcare
-
-By lowering the barrier to working with small models, OpenUnits accelerates healthcare AI research, enabling researchers to rapidly test and compare specialized models without infrastructure overhead.
-
-Healthcare applications often benefit from using different models for different subtasks:
-
-- A model fine-tuned on clinical notes for extraction
-- A model trained on medical literature for question answering
-- A model optimized for patient-facing language for communication
-
-OpenUnits makes it trivial to compose these specialized models into a single workflow.
-
-## Getting Started
-
-OpenUnits is open-source and available on our GitHub. The API is designed to be familiar to anyone who has used the OpenAI SDK. Just swap out the base URL and you're ready to go.
+Results and datasets will be published openly as work progresses.
