@@ -8,30 +8,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Layered Labs | Applied AI for Health",
+  title: "Layered Labs | Applied Clinical AI",
   description:
-    "An Applied AI Lab based in NYC building and deploying open-source, small LLMs for health.",
+    "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
   keywords: [
-    "AI",
-    "Healthcare",
-    "LLM",
-    "Open Source",
-    "Machine Learning",
+    "clinical AI",
+    "longitudinal health",
+    "patient state",
+    "open source",
+    "health companion",
+    "applied AI",
     "NYC",
-    "Applied AI",
   ],
   authors: [{ name: "Layered Labs" }],
   openGraph: {
-    title: "Layered Labs | Applied AI for Health",
+    title: "Layered Labs | Applied Clinical AI",
     description:
-      "An Applied AI Lab based in NYC building and deploying open-source, small LLMs for health.",
+      "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Layered Labs | Applied AI for Health",
+    title: "Layered Labs | Applied Clinical AI",
     description:
-      "An Applied AI Lab based in NYC building and deploying open-source, small LLMs for health.",
+      "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
   },
 };
 

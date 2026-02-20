@@ -4,13 +4,12 @@ import Image from "next/image";
 import { FadeIn } from "@/components/ui/fade-in";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { MobileNav } from "@/components/ui/mobile-nav";
-import { GridPattern } from "@/components/ui/grid-pattern";
 import { ArrowRight, ArrowUpRight, Github, Mail, MapPin } from "lucide-react";
 import type { ResearchPost } from "@/lib/research";
 
 const tagColors: Record<string, string> = {
   Paper: "bg-emerald-500/10 text-emerald-600",
-  "Technical Report": "bg-blue-500/10 text-blue-600",
+  "Technical Report": "bg-sky-500/10 text-sky-600",
   Preprint: "bg-amber-500/10 text-amber-600",
   "Blog Post": "bg-violet-500/10 text-violet-600",
 };
@@ -42,26 +41,18 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <div className="flex items-center justify-between h-16">
             <a href="#" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-black">
               <Image src="/logo.png" alt="Layered Labs" width={18} height={18} className="p-1" />
               Layered Labs
             </a>
-            <div className="hidden md:flex items-center gap-8 text-sm text-black/60">
-              <a href="#mission" className="hover:text-black transition-colors">
-                Mission
-              </a>
-              <a href="#projects" className="hover:text-black transition-colors">
-                Projects
-              </a>
-              <a href="#research" className="hover:text-black transition-colors">
-                Research
-              </a>
-              <a href="#contact" className="hover:text-black transition-colors">
-                Contact
-              </a>
+            <div className="hidden md:flex items-center gap-8 text-sm text-black/50">
+              <a href="#mission" className="hover:text-black transition-colors">Mission</a>
+              <a href="#projects" className="hover:text-black transition-colors">Projects</a>
+              <a href="#research" className="hover:text-black transition-colors">Research</a>
+              <a href="#contact" className="hover:text-black transition-colors">Contact</a>
             </div>
             <a
               href="#contact"
@@ -75,38 +66,36 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        <GridPattern
-          className="text-black/[0.03] [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
-          width={32}
-          height={32}
-        />
+      <section className="relative pt-36 pb-28 overflow-hidden bg-gradient-to-b from-sky-50/50 via-white to-white">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.08),transparent)]" />
         <div className="relative max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <div className="max-w-3xl">
-            <BlurFade delay={0.1} inView>
-              <div className="flex items-center gap-2 text-sm text-black/50 mb-8">
-                <MapPin className="w-4 h-4" />
-                <span>New York City</span>
+            <BlurFade delay={0.05} inView>
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-sky-600 bg-sky-50 border border-sky-100 rounded-full px-4 py-1.5 mb-10">
+                <MapPin className="w-3.5 h-3.5" />
+                Applied Clinical AI Lab, New York City
               </div>
             </BlurFade>
 
-            <BlurFade delay={0.2} inView>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-8 text-black">
+            <BlurFade delay={0.15} inView>
+              <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.08] mb-7 text-black">
                 Health is continuous.
                 <br />
-                <span className="text-black/40">Care should be too.</span>
+                <span className="bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">
+                  Care should be too.
+                </span>
               </h1>
             </BlurFade>
 
-            <BlurFade delay={0.3} inView>
-              <p className="text-xl md:text-2xl text-black/60 leading-relaxed mb-12 max-w-2xl">
+            <BlurFade delay={0.25} inView>
+              <p className="text-xl md:text-2xl text-black/55 leading-relaxed mb-12 max-w-2xl">
                 We build open-source AI systems that maintain structured patient
                 state across time, so every clinical visit begins with the full
                 picture.
               </p>
             </BlurFade>
 
-            <BlurFade delay={0.4} inView>
+            <BlurFade delay={0.35} inView>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#projects"
@@ -119,7 +108,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                   href="https://github.com/layered-labs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 border border-black/20 px-8 py-4 rounded-full text-base font-medium hover:bg-black/5 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 border border-black/15 px-8 py-4 rounded-full text-base font-medium hover:bg-black/5 transition-colors"
                 >
                   <Github className="w-4 h-4" />
                   GitHub
@@ -134,7 +123,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       <section id="mission" className="py-32 border-t border-black/5">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <FadeIn>
-            <p className="text-sm font-medium text-black/40 uppercase tracking-wider mb-4">
+            <p className="text-sm font-semibold text-sky-500 uppercase tracking-widest mb-4">
               Our Mission
             </p>
           </FadeIn>
@@ -166,17 +155,17 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               </FadeIn>
 
               <FadeIn delay={0.4}>
-                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black/10">
+                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black/8">
                   <div>
-                    <p className="text-3xl font-semibold text-black">100%</p>
+                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">100%</p>
                     <p className="text-sm text-black/50 mt-1">Open Source</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold text-black">450+</p>
+                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">450+</p>
                     <p className="text-sm text-black/50 mt-1">Dataset Downloads</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-semibold text-black">311</p>
+                    <p className="text-3xl font-semibold bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">311</p>
                     <p className="text-sm text-black/50 mt-1">NYC ZIP Codes Mapped</p>
                   </div>
                 </div>
@@ -187,44 +176,41 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 bg-black/[0.02]">
+      <section id="projects" className="py-32 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <FadeIn>
-            <p className="text-sm font-medium text-black/40 uppercase tracking-wider mb-4">
+            <p className="text-sm font-semibold text-sky-400 uppercase tracking-widest mb-4">
               Projects
             </p>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-16 text-black">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-16 text-white">
               What we&apos;re building
             </h2>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             {projects.map((project, index) => (
               <FadeIn key={project.name} delay={0.1 + index * 0.1}>
-                <div
-                  className="block p-8 bg-white rounded-2xl border border-black/5 transition-all duration-300"
-                >
-                  <div className="flex items-start justify-between mb-4">
+                <div className="group p-8 bg-white/5 rounded-2xl border border-white/8 hover:bg-white/8 hover:border-sky-500/30 transition-all duration-300">
+                  <div className="flex items-start justify-between mb-5">
                     <span
-                      className={`text-xs font-medium px-3 py-1 rounded-full ${project.status === "Live"
-                        ? "bg-emerald-500/10 text-emerald-600"
-                        : project.status === "In Development"
-                          ? "bg-blue-500/10 text-blue-600"
-                          : project.status === "Coming Soon"
-                            ? "bg-amber-500/10 text-amber-600"
-                            : "bg-black/5 text-black/60"
-                        }`}
+                      className={`text-xs font-medium px-3 py-1 rounded-full ${
+                        project.status === "Live"
+                          ? "bg-emerald-500/15 text-emerald-400"
+                          : project.status === "In Development"
+                            ? "bg-sky-500/15 text-sky-400"
+                            : "bg-white/10 text-white/50"
+                      }`}
                     >
                       {project.status}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-black">
+                  <h3 className="text-xl font-semibold mb-3 text-white">
                     {project.name}
                   </h3>
-                  <p className="text-black/60 leading-relaxed">
+                  <p className="text-white/50 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
@@ -238,7 +224,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       <section id="research" className="py-32">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <FadeIn>
-            <p className="text-sm font-medium text-black/40 uppercase tracking-wider mb-4">
+            <p className="text-sm font-semibold text-sky-500 uppercase tracking-widest mb-4">
               Research
             </p>
           </FadeIn>
@@ -261,13 +247,13 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                   >
                     {post.tag}
                   </span>
-                  <h3 className="text-lg font-semibold text-black group-hover:text-black/70 transition-colors flex-1 min-w-0">
+                  <h3 className="text-lg font-semibold text-black group-hover:text-black/60 transition-colors flex-1 min-w-0">
                     {post.title}
                   </h3>
                   <span className="shrink-0 text-sm text-black/30 font-mono hidden sm:block">
                     {post.date}
                   </span>
-                  <ArrowUpRight className="shrink-0 w-4 h-4 text-black/30 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="shrink-0 w-4 h-4 text-black/25 group-hover:text-sky-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </a>
                 {index < posts.length - 1 && (
                   <div className="border-b border-black/5" />
@@ -279,12 +265,12 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 bg-black text-white">
+      <section id="contact" className="py-32 bg-zinc-950 text-white">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
               <FadeIn>
-                <p className="text-sm font-medium text-white/40 uppercase tracking-wider mb-4">
+                <p className="text-sm font-semibold text-sky-400 uppercase tracking-widest mb-4">
                   Get in Touch
                 </p>
               </FadeIn>
@@ -296,7 +282,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               </FadeIn>
 
               <FadeIn delay={0.2}>
-                <p className="text-lg text-white/60 leading-relaxed mb-8">
+                <p className="text-lg text-white/55 leading-relaxed mb-8">
                   Whether you are a patient interested in early access, a
                   clinician who wants to collaborate, or a researcher working on
                   adjacent problems, we would love to hear from you.
@@ -306,7 +292,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               <FadeIn delay={0.3}>
                 <a
                   href="mailto:hello@layeredlabs.ai"
-                  className="inline-flex items-center gap-3 text-lg font-medium hover:text-white/70 transition-colors"
+                  className="inline-flex items-center gap-3 text-lg font-medium hover:text-sky-400 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
                   hello@layeredlabs.ai
@@ -321,28 +307,28 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                     href="https://github.com/layered-labs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between py-4 border-b border-white/10 hover:border-white/30 transition-colors group"
+                    className="flex items-center justify-between py-4 border-b border-white/8 hover:border-sky-500/50 transition-colors group"
                   >
                     <span className="font-medium">GitHub</span>
-                    <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                   <a
                     href="https://twitter.com/layeredlabs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between py-4 border-b border-white/10 hover:border-white/30 transition-colors group"
+                    className="flex items-center justify-between py-4 border-b border-white/8 hover:border-sky-500/50 transition-colors group"
                   >
                     <span className="font-medium">Twitter / X</span>
-                    <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                   <a
                     href="https://linkedin.com/company/layeredlabs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between py-4 border-b border-white/10 hover:border-white/30 transition-colors group"
+                    className="flex items-center justify-between py-4 border-b border-white/8 hover:border-sky-500/50 transition-colors group"
                   >
                     <span className="font-medium">LinkedIn</span>
-                    <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                 </div>
               </FadeIn>
@@ -352,9 +338,9 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-neutral-900 border-t border-neutral-800">
+      <footer className="py-8 bg-zinc-900 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
             <p>&copy; {new Date().getFullYear()} Layered Labs. All rights reserved.</p>
             <p>New York City</p>
           </div>
