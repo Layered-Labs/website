@@ -130,18 +130,17 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             <div className="space-y-5">
               <FadeIn delay={0.2}>
                 <p className="text-base text-black/60 leading-relaxed">
-                  EHRs store records. RAG retrieves documents. Neither maintains
-                  a structured, continuously updated model of who a patient is
-                  across time. That is what we are working on.
+                  We study how open-source models reason over structured patient
+                  history: how well they maintain consistency across visits, where
+                  they fail, and what it takes to make them reliable across
+                  extended time horizons.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <p className="text-base text-black/60 leading-relaxed">
-                  The health companion is our research surface: a real deployment
-                  context in community health settings where we study how
-                  open-source models reason over longitudinal state, where they
-                  hallucinate, and how accuracy degrades across extended time
-                  horizons.
+                  The health companion is our research surface: a deployment in
+                  community health settings that generates the longitudinal data
+                  we need to answer these questions rigorously.
                 </p>
               </FadeIn>
             </div>
