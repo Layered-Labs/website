@@ -8,6 +8,7 @@ export interface ResearchPost {
   description: string;
   date: string;
   tag: string;
+  image?: string;
   content: string;
 }
 
@@ -16,24 +17,25 @@ const researchDir = path.join(process.cwd(), "content/research");
 export function getAllResearchPosts(): ResearchPost[] {
   const files = fs.readdirSync(researchDir).filter((f) => f.endsWith(".md"));
 
-  const posts = files
-    .map((filename) => {
-      const slug = filename.replace(/\.md$/, "");
-      const raw = fs.readFileSync(path.join(researchDir, filename), "utf-8");
-      const { data, content } = matter(raw);
+  const posts: ResearchPost[] = [];
 
-      if (data.draft === true) return null;
+  for (const filename of files) {
+    const slug = filename.replace(/\.md$/, "");
+    const raw = fs.readFileSync(path.join(researchDir, filename), "utf-8");
+    const { data, content } = matter(raw);
 
-      return {
-        slug,
-        title: data.title,
-        description: data.description,
-        date: data.date,
-        tag: data.tag,
-        content,
-      };
-    })
-    .filter((p): p is ResearchPost => p !== null);
+    if (data.draft === true) continue;
+
+    posts.push({
+      slug,
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      tag: data.tag,
+      ...(data.image ? { image: data.image } : {}),
+      content,
+    });
+  }
 
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -55,6 +57,7 @@ export function getResearchPost(slug: string): ResearchPost | null {
     description: data.description,
     date: data.date,
     tag: data.tag,
+    ...(data.image ? { image: data.image } : {}),
     content,
   };
 }
