@@ -3,7 +3,7 @@ title: "When Education Shouldn't Matter: Counterfactual Bias in LLM-Based Emerge
 description: "We evaluate open-source and closed-source LLMs on mass casualty triage and find that while overall accuracy is comparable, models exhibit systematic counterfactual bias: triage decisions shift based on patient education level, a factor that should be clinically irrelevant."
 date: "2026-02-01"
 tag: "Paper"
-image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1619966420068-0148ee892900?q=80&w=1932&auto=format&fit=crop"
 ---
 
 ## Abstract
