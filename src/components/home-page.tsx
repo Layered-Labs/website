@@ -69,10 +69,6 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       {/* Hero */}
       <section className="pt-36 pb-24">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <BlurFade delay={0.1} inView>
-            <p className="text-sm text-black/35 mb-7 font-mono tracking-wide">New York City</p>
-          </BlurFade>
-
           <BlurFade delay={0.2} inView>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] mb-8 text-black">
               Towards health AI
@@ -263,8 +259,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                 <div>
                   {[
                     { label: "GitHub", href: "https://github.com/layered-labs" },
-                    { label: "Twitter / X", href: "https://twitter.com/layeredlabs" },
-                    { label: "LinkedIn", href: "https://linkedin.com/company/layeredlabs" },
+                    { label: "Twitter / X", href: "https://x.com/layered_labs_ai" },
                   ].map((link) => (
                     <a
                       key={link.label}
@@ -289,7 +284,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between text-xs text-zinc-600">
             <p>&copy; {new Date().getFullYear()} Layered Labs</p>
-            <p>New York City</p>
+            <p>layeredlabs.ai</p>
           </div>
         </div>
       </footer>
