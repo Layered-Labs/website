@@ -20,7 +20,6 @@ type WorkItem = {
   name: string;
   description: string;
   badge: string;
-  badgeColor: string;
   href?: string;
 };
 
@@ -30,29 +29,28 @@ const workItems: WorkItem[] = [
     description:
       "A longitudinal benchmark family built on MedQA. Clinical vignettes decomposed into sequential multi-visit scenarios, making temporal reasoning measurable for the first time.",
     badge: "In Development",
-    badgeColor: "bg-zinc-100 text-zinc-500",
   },
   {
     name: "Health Companion",
     description:
       "A local-first app that tracks medications, symptoms, and health events across time. Patients arrive at every visit with a structured summary.",
     badge: "In Development",
-    badgeColor: "bg-zinc-100 text-zinc-500",
   },
 ];
 
 function WorkCard({ item }: { item: WorkItem }) {
   const inner = (
-    <div className="group rounded-2xl overflow-hidden bg-white border border-black/6 hover:border-black/14 transition-colors h-full flex flex-col">
-      <div className="aspect-[16/9] bg-gradient-to-br from-stone-100 to-stone-200/80" />
-      <div className="p-5 flex flex-col flex-1">
-        <span className={`self-start text-xs font-mono px-2 py-0.5 rounded-md mb-3 ${item.badgeColor}`}>
+    <div className="group rounded-2xl overflow-hidden bg-[#0d0d0d] h-full flex flex-col">
+      <div className="aspect-[16/9] flex items-end p-6">
+        <span className="text-[10px] font-mono text-white/25 uppercase tracking-widest">
           {item.badge}
         </span>
-        <h3 className="text-sm font-semibold text-black mb-1.5 group-hover:text-black/50 transition-colors">
+      </div>
+      <div className="p-5 border-t border-white/6 flex flex-col flex-1">
+        <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-white/60 transition-colors">
           {item.name}
         </h3>
-        <p className="text-sm text-black/45 leading-relaxed">{item.description}</p>
+        <p className="text-sm text-white/35 leading-relaxed">{item.description}</p>
       </div>
     </div>
   );
@@ -71,9 +69,9 @@ function ResearchCard({ post }: { post: ResearchPost }) {
   return (
     <a
       href={`/research/${post.slug}`}
-      className="group block rounded-2xl overflow-hidden bg-white border border-black/6 hover:border-black/14 transition-colors h-full flex flex-col"
+      className="group block rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-colors bg-white h-full flex flex-col"
     >
-      <div className="aspect-[16/9] bg-stone-100 overflow-hidden">
+      <div className="aspect-[16/9] bg-zinc-100 overflow-hidden">
         {post.image ? (
           <img
             src={post.image}
@@ -81,7 +79,7 @@ function ResearchCard({ post }: { post: ResearchPost }) {
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200/80" />
+          <div className="w-full h-full bg-zinc-100" />
         )}
       </div>
       <div className="p-5 flex flex-col flex-1">
@@ -102,9 +100,9 @@ function ResearchCard({ post }: { post: ResearchPost }) {
 
 export function HomePage({ posts }: { posts: ResearchPost[] }) {
   return (
-    <div className="min-h-screen bg-[#f9f8f6]">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f9f8f6]/95 backdrop-blur-sm border-b border-black/6">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-14">
             <a href="#" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-black">
@@ -132,15 +130,15 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       <section className="pt-40 pb-28">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.2} inView>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] mb-8 text-black">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.04] mb-8 text-black">
               Towards health AI
               <br />
-              <span className="text-black/30">that knows patients over time.</span>
+              <span className="text-black/25">that knows patients over time.</span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.3} inView>
-            <p className="text-lg text-black/55 leading-relaxed mb-10 max-w-xl">
+            <p className="text-lg text-black/50 leading-relaxed mb-10 max-w-lg">
               Layered Labs studies how AI performs on health tasks across diverse patient populations and over time.
             </p>
           </BlurFade>
@@ -158,7 +156,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                 href="https://github.com/layered-labs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-black/55 border border-black/15 px-5 py-2.5 rounded-lg hover:text-black hover:border-black/30 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-black/50 border border-black/12 px-5 py-2.5 rounded-lg hover:text-black hover:border-black/25 transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
                 GitHub
@@ -172,26 +170,26 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       <section id="mission" className="py-24 border-t border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <FadeIn>
-            <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
+            <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-10">
               Mission
             </p>
           </FadeIn>
 
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <FadeIn delay={0.1}>
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-black">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-snug text-black">
                 Longitudinal patient state is an open research problem.
               </h2>
             </FadeIn>
 
             <div className="space-y-5">
               <FadeIn delay={0.2}>
-                <p className="text-base text-black/60 leading-relaxed">
+                <p className="text-base text-black/55 leading-relaxed">
                   Current benchmarks treat clinical reasoning as a single snapshot. In practice, clinicians reason across visits, synthesize history, and track how patient state changes over time.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>
-                <p className="text-base text-black/60 leading-relaxed">
+                <p className="text-base text-black/55 leading-relaxed">
                   We study how AI systems reason over longitudinal patient health state, where they fail, and how performance differs across patient populations.
                 </p>
               </FadeIn>
@@ -204,12 +202,12 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       <section id="work" className="py-24 border-t border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <FadeIn>
-            <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
+            <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-10">
               Work
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-4">
             {workItems.map((item, i) => (
               <FadeIn key={item.name} delay={0.1 + i * 0.08}>
                 <WorkCard item={item} />
@@ -225,29 +223,29 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-[#0f0f0f] text-white">
+      <section id="contact" className="py-24 bg-[#0d0d0d] text-white">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
               <FadeIn>
-                <p className="text-xs font-mono text-white/25 uppercase tracking-widest mb-8">
+                <p className="text-xs font-mono text-white/20 uppercase tracking-widest mb-8">
                   Contact
                 </p>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-5">
                   Interested in the work?
                 </h2>
               </FadeIn>
               <FadeIn delay={0.2}>
-                <p className="text-base text-white/45 leading-relaxed mb-8">
+                <p className="text-base text-white/40 leading-relaxed mb-8">
                   Whether you are a clinician who wants to collaborate, a researcher working on adjacent problems, or a patient interested in early access, reach out.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <a
                   href="mailto:hello@layeredlabs.ai"
-                  className="inline-flex items-center gap-2 text-sm font-medium hover:text-white/60 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium hover:text-white/50 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
                   hello@layeredlabs.ai
@@ -267,10 +265,10 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between py-4 border-b border-white/8 hover:border-white/20 transition-colors group"
+                      className="flex items-center justify-between py-4 border-b border-white/6 hover:border-white/15 transition-colors group"
                     >
                       <span className="text-sm font-medium">{link.label}</span>
-                      <ArrowUpRight className="w-4 h-4 text-white/25 group-hover:text-white/60 transition-colors" />
+                      <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
                     </a>
                   ))}
                 </div>
@@ -281,7 +279,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Footer */}
-      <footer className="py-5 bg-[#0a0a0a] border-t border-white/5">
+      <footer className="py-5 bg-[#080808] border-t border-white/4">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between text-xs text-zinc-600">
             <p>&copy; {new Date().getFullYear()} Layered Labs</p>
