@@ -8,30 +8,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Layered Labs | Applied Clinical AI",
+  title: "Layered Labs | Longitudinal Health AI Research",
   description:
-    "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
+    "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
   keywords: [
-    "clinical AI",
-    "longitudinal health",
+    "longitudinal health AI",
+    "clinical reasoning",
     "patient state",
     "open source",
-    "health companion",
-    "applied AI",
-    "NYC",
+    "health benchmarks",
+    "MedQA",
+    "applied AI research",
   ],
   authors: [{ name: "Layered Labs" }],
   openGraph: {
-    title: "Layered Labs | Applied Clinical AI",
+    title: "Layered Labs | Longitudinal Health AI Research",
     description:
-      "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
+      "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Layered Labs | Applied Clinical AI",
+    title: "Layered Labs | Longitudinal Health AI Research",
     description:
-      "An applied clinical AI lab building open-source systems that maintain longitudinal patient state, enabling continuity of care in fragmented and underserved environments.",
+      "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
   },
 };
 

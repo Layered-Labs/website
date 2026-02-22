@@ -16,24 +16,27 @@ const tagColors: Record<string, string> = {
 
 const defaultTagColor = "bg-zinc-100 text-zinc-600";
 
-const projects = [
+const work = [
   {
-    name: "Health Companion",
+    index: "01",
+    name: "MedQA-Deconstructed",
     description:
-      "A local-first app that tracks medications, symptoms, and health events over time. Patients arrive at every visit with a structured summary. Clinicians gain longitudinal context they have never had access to before.",
+      "A longitudinal benchmark family built on MedQA. Clinical vignettes decomposed into sequential multi-visit scenarios, making temporal reasoning measurable for the first time.",
     status: "In Development",
   },
   {
-    name: "NYC Clinic AI Infrastructure",
+    index: "02",
+    name: "Health Companion",
     description:
-      "Published dataset and interactive map evaluating broadband and electricity infrastructure across all 311 NYC ZIP codes, identifying where on-premise clinical AI can be deployed today.",
-    status: "Live",
+      "A local-first app that tracks medications, symptoms, and health events across time. Patients arrive at every visit with a structured summary. Clinicians gain longitudinal context they have never had before.",
+    status: "In Development",
   },
   {
-    name: "Longitudinal Summarization",
+    index: "03",
+    name: "NYC Clinic AI Infrastructure",
     description:
-      "Research into how open-source models reason over structured patient state: measuring hallucination rates, temporal consistency, and summarization quality across extended time horizons.",
-    status: "Research",
+      "Published dataset and interactive map evaluating broadband and electricity infrastructure across all 311 NYC ZIP codes, identifying where on-premise AI can be deployed today.",
+    status: "Live",
   },
 ];
 
@@ -50,7 +53,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             </a>
             <div className="hidden md:flex items-center gap-8 text-sm text-black/50">
               <a href="#mission" className="hover:text-black transition-colors">Mission</a>
-              <a href="#projects" className="hover:text-black transition-colors">Projects</a>
+              <a href="#work" className="hover:text-black transition-colors">Work</a>
               <a href="#research" className="hover:text-black transition-colors">Research</a>
               <a href="#contact" className="hover:text-black transition-colors">Contact</a>
             </div>
@@ -67,27 +70,26 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </nav>
 
       {/* Hero */}
-      <section className="pt-36 pb-24">
+      <section className="pt-40 pb-28">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.2} inView>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] mb-8 text-black">
               Towards health AI
               <br />
-              <span className="text-black">that knows patients over time.</span>
+              <span className="text-black/35">that knows patients over time.</span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.3} inView>
-            <p className="text-lg text-black/55 leading-relaxed mb-10 max-w-lg">
-              An applied clinical AI lab studying how open-source models reason
-              over longitudinal patient state, built for community health clinics.
+            <p className="text-lg text-black/55 leading-relaxed mb-10 max-w-xl">
+              We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.
             </p>
           </BlurFade>
 
           <BlurFade delay={0.4} inView>
             <div className="flex items-center gap-3">
               <a
-                href="#projects"
+                href="#work"
                 className="inline-flex items-center gap-2 bg-black text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-black/85 transition-colors"
               >
                 Our Work
@@ -126,17 +128,12 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             <div className="space-y-5">
               <FadeIn delay={0.2}>
                 <p className="text-base text-black/60 leading-relaxed">
-                  We study how open-source models reason over structured patient
-                  history: how well they maintain consistency across visits, where
-                  they fail, and what it takes to make them reliable across
-                  extended time horizons.
+                  Current benchmarks treat clinical reasoning as a single snapshot. In practice, clinicians reason across visits, synthesize history, and track how patient state changes over time.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <p className="text-base text-black/60 leading-relaxed">
-                  The health companion is our research surface: a deployment in
-                  community health settings that generates the longitudinal data
-                  we need to answer these questions rigorously.
+                  We study whether AI systems can do the same: how well they maintain consistency across visits, where they fail, and how performance differs across patient populations.
                 </p>
               </FadeIn>
             </div>
@@ -144,32 +141,41 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
         </div>
       </section>
 
-      {/* Projects */}
-      <section id="projects" className="py-24 border-t border-black/8">
+      {/* Work */}
+      <section id="work" className="py-24 border-t border-black/8">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <FadeIn>
             <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
-              Projects
+              Work
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {projects.map((project, index) => (
-              <FadeIn key={project.name} delay={0.1 + index * 0.08}>
-                <div className="rounded-xl border border-black/10 p-6 h-full">
-                  <span
-                    className={`inline-block text-xs font-medium px-2.5 py-1 rounded-md mb-4 ${
-                      project.status === "Live"
-                        ? "bg-emerald-50 text-emerald-700"
-                        : project.status === "In Development"
-                          ? "bg-blue-50 text-blue-700"
-                          : "bg-zinc-100 text-zinc-500"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                  <h3 className="text-sm font-semibold mb-2 text-black">{project.name}</h3>
-                  <p className="text-sm text-black/50 leading-relaxed">{project.description}</p>
+          <div>
+            {work.map((item, index) => (
+              <FadeIn key={item.name} delay={0.1 + index * 0.08}>
+                <div className={`py-8 ${index < work.length - 1 ? "border-b border-black/8" : ""}`}>
+                  <div className="grid md:grid-cols-[1fr_auto] gap-4 items-start">
+                    <div>
+                      <div className="flex items-center gap-4 mb-3">
+                        <span className="text-xs font-mono text-black/25">{item.index}</span>
+                        <span className="text-sm font-semibold text-black">{item.name}</span>
+                      </div>
+                      <p className="text-sm text-black/50 leading-relaxed pl-8 max-w-2xl">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="flex items-start pl-8 md:pl-0 md:pt-0.5">
+                      <span
+                        className={`text-xs font-mono px-2.5 py-1 rounded-md ${
+                          item.status === "Live"
+                            ? "bg-emerald-50 text-emerald-700"
+                            : "bg-zinc-100 text-zinc-500"
+                        }`}
+                      >
+                        {item.status}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </FadeIn>
             ))}
@@ -186,33 +192,29 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-10">
+          <div>
             {posts.map((post, index) => (
-              <FadeIn key={post.slug} delay={0.1 + index * 0.1}>
-                <a href={`/research/${post.slug}`} className="group block">
-                  {post.image && (
-                    <div className="aspect-[16/9] overflow-hidden rounded-xl mb-5 bg-zinc-100">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                      />
-                    </div>
-                  )}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3">
+              <FadeIn key={post.slug} delay={0.1 + index * 0.06}>
+                <a
+                  href={`/research/${post.slug}`}
+                  className="group flex items-start justify-between gap-8 py-7 border-b border-black/8 last:border-b-0"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-3 mb-2.5">
                       <span className={`text-xs font-medium px-2.5 py-1 rounded-md ${tagColors[post.tag] ?? defaultTagColor}`}>
                         {post.tag}
                       </span>
                       <span className="text-xs text-black/30 font-mono">{post.date}</span>
                     </div>
-                    <h3 className="text-base font-semibold text-black group-hover:text-black/60 transition-colors leading-snug">
+                    <h3 className="text-sm font-semibold text-black group-hover:text-black/50 transition-colors leading-snug mb-1.5">
                       {post.title}
                     </h3>
-                    <p className="text-sm text-black/50 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-black/45 leading-relaxed line-clamp-2">
                       {post.description}
                     </p>
+                  </div>
+                  <div className="flex-shrink-0 pt-1">
+                    <ArrowUpRight className="w-4 h-4 text-black/20 group-hover:text-black/50 transition-colors" />
                   </div>
                 </a>
               </FadeIn>
@@ -238,9 +240,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               </FadeIn>
               <FadeIn delay={0.2}>
                 <p className="text-base text-white/45 leading-relaxed mb-8">
-                  Whether you are a patient interested in early access, a
-                  clinician who wants to collaborate, or a researcher working on
-                  adjacent problems, reach out.
+                  Whether you are a clinician who wants to collaborate, a researcher working on adjacent problems, or a patient interested in early access, reach out.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>
