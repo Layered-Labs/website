@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 const links = [
   { href: "#mission", label: "Mission" },
   { href: "#work", label: "Work" },
-  { href: "#research", label: "Research" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -31,7 +30,7 @@ export function MobileNav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-[#fafafa] border-b border-neutral-200 shadow-lg"
+            className="absolute top-full left-0 right-0 bg-[#f9f8f6] border-b border-black/6"
           >
             <div className="px-8 py-6 space-y-4">
               {links.map((link) => (
@@ -39,7 +38,7 @@ export function MobileNav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-lg font-medium text-neutral-900 hover:text-neutral-600 transition-colors"
+                  className="block text-lg font-medium text-black/70 hover:text-black transition-colors"
                 >
                   {link.label}
                 </a>
@@ -47,7 +46,7 @@ export function MobileNav() {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="inline-flex items-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-full text-sm font-medium mt-4"
+                className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg text-sm font-medium mt-4"
               >
                 Get in Touch
               </a>

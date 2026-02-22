@@ -16,35 +16,95 @@ const tagColors: Record<string, string> = {
 
 const defaultTagColor = "bg-zinc-100 text-zinc-600";
 
-const work = [
+type WorkItem = {
+  name: string;
+  description: string;
+  badge: string;
+  badgeColor: string;
+  href?: string;
+};
+
+const workItems: WorkItem[] = [
   {
-    index: "01",
     name: "MedQA-Deconstructed",
     description:
       "A longitudinal benchmark family built on MedQA. Clinical vignettes decomposed into sequential multi-visit scenarios, making temporal reasoning measurable for the first time.",
-    status: "In Development",
+    badge: "In Development",
+    badgeColor: "bg-zinc-100 text-zinc-500",
   },
   {
-    index: "02",
     name: "Health Companion",
     description:
-      "A local-first app that tracks medications, symptoms, and health events across time. Patients arrive at every visit with a structured summary. Clinicians gain longitudinal context they have never had before.",
-    status: "In Development",
-  },
-  {
-    index: "03",
-    name: "NYC Clinic AI Infrastructure",
-    description:
-      "Published dataset and interactive map evaluating broadband and electricity infrastructure across all 311 NYC ZIP codes, identifying where on-premise AI can be deployed today.",
-    status: "Live",
+      "A local-first app that tracks medications, symptoms, and health events across time. Patients arrive at every visit with a structured summary.",
+    badge: "In Development",
+    badgeColor: "bg-zinc-100 text-zinc-500",
   },
 ];
 
+function WorkCard({ item }: { item: WorkItem }) {
+  const inner = (
+    <div className="group rounded-2xl overflow-hidden bg-white border border-black/6 hover:border-black/14 transition-colors h-full flex flex-col">
+      <div className="aspect-[16/9] bg-gradient-to-br from-stone-100 to-stone-200/80" />
+      <div className="p-5 flex flex-col flex-1">
+        <span className={`self-start text-xs font-mono px-2 py-0.5 rounded-md mb-3 ${item.badgeColor}`}>
+          {item.badge}
+        </span>
+        <h3 className="text-sm font-semibold text-black mb-1.5 group-hover:text-black/50 transition-colors">
+          {item.name}
+        </h3>
+        <p className="text-sm text-black/45 leading-relaxed">{item.description}</p>
+      </div>
+    </div>
+  );
+
+  if (item.href) {
+    return (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+        {inner}
+      </a>
+    );
+  }
+  return <div className="h-full">{inner}</div>;
+}
+
+function ResearchCard({ post }: { post: ResearchPost }) {
+  return (
+    <a
+      href={`/research/${post.slug}`}
+      className="group block rounded-2xl overflow-hidden bg-white border border-black/6 hover:border-black/14 transition-colors h-full flex flex-col"
+    >
+      <div className="aspect-[16/9] bg-stone-100 overflow-hidden">
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200/80" />
+        )}
+      </div>
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-center gap-2.5 mb-3">
+          <span className={`text-xs font-medium px-2 py-0.5 rounded-md ${tagColors[post.tag] ?? defaultTagColor}`}>
+            {post.tag}
+          </span>
+          <span className="text-xs text-black/30 font-mono">{post.date}</span>
+        </div>
+        <h3 className="text-sm font-semibold text-black mb-1.5 leading-snug group-hover:text-black/50 transition-colors">
+          {post.title}
+        </h3>
+        <p className="text-sm text-black/45 leading-relaxed line-clamp-2">{post.description}</p>
+      </div>
+    </a>
+  );
+}
+
 export function HomePage({ posts }: { posts: ResearchPost[] }) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f9f8f6]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-black/8">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f9f8f6]/95 backdrop-blur-sm border-b border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-14">
             <a href="#" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-black">
@@ -54,7 +114,6 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             <div className="hidden md:flex items-center gap-8 text-sm text-black/50">
               <a href="#mission" className="hover:text-black transition-colors">Mission</a>
               <a href="#work" className="hover:text-black transition-colors">Work</a>
-              <a href="#research" className="hover:text-black transition-colors">Research</a>
               <a href="#contact" className="hover:text-black transition-colors">Contact</a>
             </div>
             <a
@@ -76,13 +135,13 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] mb-8 text-black">
               Towards health AI
               <br />
-              <span className="text-black/35">that knows patients over time.</span>
+              <span className="text-black/30">that knows patients over time.</span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.3} inView>
             <p className="text-lg text-black/55 leading-relaxed mb-10 max-w-xl">
-              We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.
+              Layered Labs studies how AI performs on health tasks across diverse patient populations and over time.
             </p>
           </BlurFade>
 
@@ -110,7 +169,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Mission */}
-      <section id="mission" className="py-24 border-t border-black/8">
+      <section id="mission" className="py-24 border-t border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <FadeIn>
             <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
@@ -133,7 +192,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               </FadeIn>
               <FadeIn delay={0.3}>
                 <p className="text-base text-black/60 leading-relaxed">
-                  We study whether AI systems can do the same: how well they maintain consistency across visits, where they fail, and how performance differs across patient populations.
+                  We study how AI systems reason over longitudinal patient health state, where they fail, and how performance differs across patient populations.
                 </p>
               </FadeIn>
             </div>
@@ -142,7 +201,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Work */}
-      <section id="work" className="py-24 border-t border-black/8">
+      <section id="work" className="py-24 border-t border-black/6">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <FadeIn>
             <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
@@ -150,73 +209,15 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             </p>
           </FadeIn>
 
-          <div>
-            {work.map((item, index) => (
-              <FadeIn key={item.name} delay={0.1 + index * 0.08}>
-                <div className={`py-8 ${index < work.length - 1 ? "border-b border-black/8" : ""}`}>
-                  <div className="grid md:grid-cols-[1fr_auto] gap-4 items-start">
-                    <div>
-                      <div className="flex items-center gap-4 mb-3">
-                        <span className="text-xs font-mono text-black/25">{item.index}</span>
-                        <span className="text-sm font-semibold text-black">{item.name}</span>
-                      </div>
-                      <p className="text-sm text-black/50 leading-relaxed pl-8 max-w-2xl">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="flex items-start pl-8 md:pl-0 md:pt-0.5">
-                      <span
-                        className={`text-xs font-mono px-2.5 py-1 rounded-md ${
-                          item.status === "Live"
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "bg-zinc-100 text-zinc-500"
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {workItems.map((item, i) => (
+              <FadeIn key={item.name} delay={0.1 + i * 0.08}>
+                <WorkCard item={item} />
               </FadeIn>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Research */}
-      <section id="research" className="py-24 border-t border-black/8">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <FadeIn>
-            <p className="text-xs font-mono text-black/35 uppercase tracking-widest mb-10">
-              Research
-            </p>
-          </FadeIn>
-
-          <div>
-            {posts.map((post, index) => (
-              <FadeIn key={post.slug} delay={0.1 + index * 0.06}>
-                <a
-                  href={`/research/${post.slug}`}
-                  className="group flex items-start justify-between gap-8 py-7 border-b border-black/8 last:border-b-0"
-                >
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-3 mb-2.5">
-                      <span className={`text-xs font-medium px-2.5 py-1 rounded-md ${tagColors[post.tag] ?? defaultTagColor}`}>
-                        {post.tag}
-                      </span>
-                      <span className="text-xs text-black/30 font-mono">{post.date}</span>
-                    </div>
-                    <h3 className="text-sm font-semibold text-black group-hover:text-black/50 transition-colors leading-snug mb-1.5">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-black/45 leading-relaxed line-clamp-2">
-                      {post.description}
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 pt-1">
-                    <ArrowUpRight className="w-4 h-4 text-black/20 group-hover:text-black/50 transition-colors" />
-                  </div>
-                </a>
+            {posts.map((post, i) => (
+              <FadeIn key={post.slug} delay={0.1 + (workItems.length + i) * 0.06}>
+                <ResearchCard post={post} />
               </FadeIn>
             ))}
           </div>
@@ -224,7 +225,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-[#0f0f0f] text-white border-t border-black/8">
+      <section id="contact" className="py-24 bg-[#0f0f0f] text-white">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
