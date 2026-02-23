@@ -8,30 +8,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Layered Labs | Longitudinal Health AI Research",
+  title: "Layered Labs | Clinical AI for All",
   description:
-    "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
+    "Layered Labs is a nonprofit research institute studying the clinical capabilities of open-source AI models and their suitability for deployment in low-resource settings.",
   keywords: [
-    "longitudinal health AI",
-    "clinical reasoning",
-    "patient state",
-    "open source",
-    "health benchmarks",
+    "clinical AI",
+    "open-source models",
+    "low-resource healthcare",
+    "clinical benchmarks",
     "MedQA",
-    "applied AI research",
+    "nonprofit research",
+    "community health",
   ],
   authors: [{ name: "Layered Labs" }],
   openGraph: {
-    title: "Layered Labs | Longitudinal Health AI Research",
+    title: "Layered Labs | Clinical AI for All",
     description:
-      "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
+      "Layered Labs is a nonprofit research institute studying the clinical capabilities of open-source AI models and their suitability for deployment in low-resource settings.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Layered Labs | Longitudinal Health AI Research",
+    title: "Layered Labs | Clinical AI for All",
     description:
-      "We build benchmarks and study how AI systems reason over longitudinal patient health state: where they fail, and how performance differs across populations.",
+      "Layered Labs is a nonprofit research institute studying the clinical capabilities of open-source AI models and their suitability for deployment in low-resource settings.",
   },
 };
 

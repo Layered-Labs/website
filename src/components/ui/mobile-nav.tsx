@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#mission", label: "Mission" },
+  { href: "#research", label: "Research" },
   { href: "#work", label: "Work" },
   { href: "#contact", label: "Contact" },
 ];
@@ -30,7 +30,7 @@ export function MobileNav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-[#f9f8f6] border-b border-black/6"
+            className="absolute top-full left-0 right-0 bg-white border-b border-black/6"
           >
             <div className="px-8 py-6 space-y-4">
               {links.map((link) => (
