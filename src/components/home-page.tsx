@@ -67,7 +67,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.1} inView>
             <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-10">
-              Applied nonprofit research lab · New York City
+              Nonprofit applied research lab · New York City
             </p>
           </BlurFade>
 
