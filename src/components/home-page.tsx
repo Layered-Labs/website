@@ -8,45 +8,28 @@ import { ArrowRight, ArrowUpRight, Github, Mail } from "lucide-react";
 import type { ResearchPost } from "@/lib/research";
 
 const tagColors: Record<string, string> = {
-  Paper: "bg-emerald-50 text-emerald-700",
-  Dataset: "bg-sky-50 text-sky-700",
+  Paper: "bg-blue-50 text-blue-700",
+  Dataset: "bg-violet-50 text-violet-700",
   Preprint: "bg-amber-50 text-amber-700",
+  Tool: "bg-emerald-50 text-emerald-700",
   "Blog Post": "bg-zinc-100 text-zinc-600",
 };
 
 const defaultTagColor = "bg-zinc-100 text-zinc-600";
 
-function ResearchCard({ post }: { post: ResearchPost }) {
+function ResearchRow({ post }: { post: ResearchPost }) {
   return (
     <a
       href={`/research/${post.slug}`}
-      className="group block rounded-2xl overflow-hidden border border-black/8 hover:border-black/18 transition-colors bg-white h-full flex flex-col"
+      className="group flex items-baseline gap-4 py-4 border-b border-black/6 hover:border-black/15 transition-colors"
     >
-      <div className="aspect-[16/9] bg-zinc-100 overflow-hidden">
-        {post.image ? (
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-          />
-        ) : (
-          <div className="w-full h-full bg-zinc-50" />
-        )}
-      </div>
-      <div className="p-5 flex flex-col flex-1">
-        <div className="flex items-center gap-2.5 mb-3">
-          <span className={`text-xs font-medium px-2 py-0.5 rounded-md ${tagColors[post.tag] ?? defaultTagColor}`}>
-            {post.tag}
-          </span>
-          <span className="text-xs text-black/30 font-mono">{post.date}</span>
-        </div>
-        <h3 className="text-sm font-semibold text-black mb-1.5 leading-snug group-hover:text-black/50 transition-colors">
-          {post.title}
-        </h3>
-        <p className="text-sm text-black/45 leading-relaxed line-clamp-2">
-          {post.description}
-        </p>
-      </div>
+      <span className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-md ${tagColors[post.tag] ?? defaultTagColor}`}>
+        {post.tag}
+      </span>
+      <span className="flex-1 text-sm font-medium text-black group-hover:text-black/50 transition-colors leading-snug">
+        {post.title}
+      </span>
+      <span className="shrink-0 text-xs text-black/30 font-mono">{post.date}</span>
     </a>
   );
 }
@@ -65,7 +48,6 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             </a>
             <div className="hidden md:flex items-center gap-8 text-sm text-black/50">
               <a href="#research" className="hover:text-black transition-colors">Research</a>
-              <a href="#work" className="hover:text-black transition-colors">Work</a>
               <a href="#contact" className="hover:text-black transition-colors">Contact</a>
             </div>
             <a
@@ -85,7 +67,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.1} inView>
             <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-10">
-              Nonprofit research institute · New York City
+              Applied nonprofit research lab · New York City
             </p>
           </BlurFade>
 
@@ -99,7 +81,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
 
           <BlurFade delay={0.3} inView>
             <p className="text-base text-black/50 leading-relaxed mb-10 max-w-md">
-              Layered Labs studies the clinical capabilities of open-source AI models and their suitability for deployment in low-resource settings.
+              We study the clinical capabilities of open-source AI models and build tools to put them in the hands of low-resource clinics.
             </p>
           </BlurFade>
 
@@ -148,62 +130,13 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {posts.map((post, i) => (
-              <FadeIn key={post.slug} delay={0.1 + i * 0.06}>
-                <ResearchCard post={post} />
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Work */}
-      <section id="work" className="py-24 border-t border-black/6">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <FadeIn>
-            <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-12">
-              Work
-            </p>
+          <FadeIn delay={0.1}>
+            <div>
+              {posts.map((post) => (
+                <ResearchRow key={post.slug} post={post} />
+              ))}
+            </div>
           </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <FadeIn delay={0.1}>
-              <div className="rounded-2xl overflow-hidden bg-[#0d0d0d] h-full flex flex-col">
-                <div className="aspect-[16/9] flex items-end p-6">
-                  <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                    In Development
-                  </span>
-                </div>
-                <div className="p-5 border-t border-white/6 flex flex-col flex-1">
-                  <h3 className="text-sm font-semibold text-white mb-2">
-                    MedQA-Deconstructed
-                  </h3>
-                  <p className="text-sm text-white/35 leading-relaxed">
-                    A benchmark evaluating open-source model performance on multi-visit clinical reasoning scenarios. Built on MedQA. Designed for deployment evaluation.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.18}>
-              <div className="rounded-2xl overflow-hidden bg-[#0d0d0d] h-full flex flex-col">
-                <div className="aspect-[16/9] flex items-end p-6">
-                  <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                    In Development
-                  </span>
-                </div>
-                <div className="p-5 border-t border-white/6 flex flex-col flex-1">
-                  <h3 className="text-sm font-semibold text-white mb-2">
-                    Open-Source Clinical Leaderboard
-                  </h3>
-                  <p className="text-sm text-white/35 leading-relaxed">
-                    A public leaderboard tracking open-source model performance across clinical benchmarks. A reference for anyone evaluating models for deployment.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
         </div>
       </section>
 
