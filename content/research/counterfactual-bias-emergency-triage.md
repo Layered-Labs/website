@@ -26,4 +26,4 @@ The question of which biases persist even in structured, controlled inputs is on
 
 ## Publication
 
-Submitted to the ICLR AIMS Workshop (AI for Medicine and Science).
+Submitted to the ICLR AIMS Workshop.
