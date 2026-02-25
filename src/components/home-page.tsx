@@ -81,7 +81,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
 
           <BlurFade delay={0.3} inView>
             <p className="text-base text-black/50 leading-relaxed mb-10 max-w-md">
-              We build and benchmark open-source AI for community health clinics that can't afford closed, proprietary systems.
+              AI is changing healthcare fast. We work towards making sure it changes for everyone.
             </p>
           </BlurFade>
 
