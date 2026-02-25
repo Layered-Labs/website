@@ -63,25 +63,25 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
       </nav>
 
       {/* Hero */}
-      <section className="pt-40 pb-32">
+      <section className="pt-44 pb-36">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.1} inView>
             <p className="text-xs font-mono text-black/30 uppercase tracking-widest mb-10">
-              Nonprofit applied research lab · New York City
+              Nonprofit applied AI lab · New York City
             </p>
           </BlurFade>
 
           <BlurFade delay={0.2} inView>
             <h1 className="text-6xl md:text-7xl lg:text-[90px] font-bold tracking-tighter leading-[0.95] mb-10 text-black">
-              Clinical AI
+              Applied AI
               <br />
-              for All.
+              for health equity.
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.3} inView>
             <p className="text-base text-black/50 leading-relaxed mb-10 max-w-md">
-              We study the clinical capabilities of open-source AI models and build tools to put them in the hands of low-resource clinics.
+              We build and benchmark open-source AI for community health clinics that can't afford closed, proprietary systems.
             </p>
           </BlurFade>
 
@@ -120,12 +120,12 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
           <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             <FadeIn delay={0.1}>
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-snug text-black">
-                We benchmark open-source models on clinical tasks.
+                We benchmark what community clinics can actually use.
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-base text-black/55 leading-relaxed">
-                We study how capabilities shift across model sizes and evaluate what is realistically deployable in low-resource clinical environments.
+                We evaluate open-source models on clinical tasks and study what is realistically deployable in under-resourced settings, on-device and without internet.
               </p>
             </FadeIn>
           </div>
@@ -157,7 +157,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
               </FadeIn>
               <FadeIn delay={0.2}>
                 <p className="text-base text-white/40 leading-relaxed mb-8">
-                  Whether you are a researcher working on adjacent problems, a clinician interested in open-source deployment, or a health system evaluating models, reach out.
+                  Whether you're a researcher working on adjacent problems, a clinician curious about open-source deployment, or a health system evaluating models, reach out.
                 </p>
               </FadeIn>
               <FadeIn delay={0.3}>

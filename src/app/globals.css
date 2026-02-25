@@ -6,6 +6,7 @@
   --muted: rgba(0, 0, 0, 0.5);
   --border: rgba(0, 0, 0, 0.1);
   --accent: #000000;
+  --gold: #FFBE0B;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-gold: var(--gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
