@@ -116,7 +116,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12">
           <BlurFade delay={0.1} inView>
-            <p className="text-xs font-mono text-white/50 uppercase tracking-widest mb-10">
+            <p className="text-xs font-mono text-white/70 uppercase tracking-widest mb-10">
               Nonprofit applied AI lab · New York City
             </p>
           </BlurFade>
@@ -128,7 +128,7 @@ export function HomePage({ posts }: { posts: ResearchPost[] }) {
           </BlurFade>
 
           <BlurFade delay={0.3} inView>
-            <p className="text-base md:text-lg text-white/60 leading-relaxed mb-10 max-w-lg mx-auto">
+            <p className="text-base md:text-lg text-white/80 leading-relaxed mb-10 max-w-lg mx-auto">
               We build and deploy open-source clinical AI for the health systems that need it most. Private, on-device, no cloud required.
             </p>
           </BlurFade>
