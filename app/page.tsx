@@ -4,6 +4,7 @@ import { LightRays } from "@/components/ui/light-rays";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { MagicCard } from "@/components/ui/magic-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { Navbar } from "@/components/navbar";
 
 const projects = [
@@ -11,22 +12,62 @@ const projects = [
     name: "NYC Clinic AI Infrastructure",
     description:
       "A dataset and interactive map of AI deployment readiness across 637 NYC community health clinic records, spanning 21 languages. Published on HuggingFace.",
-    href: "https://huggingface.co/datasets/Layered-Labs/nyc-clinic-ai-infrastructure",
-    meta: "637 clinics · 21 languages",
+    href: "https://huggingface.co/spaces/Layered-Labs/nyc-clinic-ai-infra-map?logs=container",
   },
   {
     name: "NEISS Injury Dataset",
     description:
       "A cleaned and structured dataset derived from CPSC NEISS emergency room injury surveillance data, formatted for clinical AI research.",
-    href: "https://huggingface.co/Layered-Labs",
-    meta: "HuggingFace Dataset",
+    href: "https://huggingface.co/datasets/Layered-Labs/neiss-injury-data",
   },
   {
     name: "BenchBase",
     description:
       "An evaluation framework for assessing open-source language models on clinical tasks using standardized medical datasets.",
-    href: "https://github.com/layered-labs",
-    meta: "Open-source · Clinical NLP",
+    href: "https://huggingface.co/datasets/Layered-Labs/benchbase-medqa",
+  },
+];
+
+const stats = [
+  { value: 500, suffix: "+", label: "HuggingFace Dataset Downloads" },
+  { value: 637, suffix: "", label: "NYC Community Clinics in Our Dataset" },
+];
+
+const papers = [
+  {
+    title: "When Education Shouldn't Matter: Counterfactual Bias in LLM-Based Emergency Triage",
+    workshop: "Accepted: ICLR AIMS Workshop",
+    question: "Do LLMs proposed for emergency triage change their decisions based on patient education level, even though education is ethically irrelevant to clinical severity?",
+    matters: "Standard of care must not vary by education, income, or background. As clinical AI scales, unchecked demographic bias will disproportionately harm already-underserved communities, embedding health inequity into the infrastructure of medicine itself.",
+    did: "We tested Qwen-2.5-72B and GPT-4o-mini on 87 clinical vignettes with education-level cues added, holding all medical information constant and measuring decision flips.",
+  },
+  {
+    title: "Does Structure Affect Accuracy? Pydantic vs. Unstructured Output on Clinical QA",
+    workshop: null,
+    question: "Does enforcing structured output in clinical LLM pipelines silently change model accuracy on medical reasoning tasks?",
+    matters: "Developers building clinical AI applications rely on structured outputs as standard engineering practice. If that choice silently degrades accuracy, it is a default decision quietly compromising every pipeline built on top of it.",
+    did: "We compared Pydantic-enforced vs. unstructured output across GPT-4o-mini, Gemini, and Claude on MedQA benchmark questions.",
+  },
+  {
+    title: "Simplifying Orthopedic Patient Education with Open-Source LLMs",
+    workshop: null,
+    question: "Can open-source LLMs reliably simplify clinical patient education materials to a reading level that underserved patients can actually use?",
+    matters: "Better health literacy drives better adherence and better outcomes across all clinical settings. Open-source models that reliably deliver that give every clinic a zero-cost path to closing the gap.",
+    did: "We evaluated open and closed-source LLMs on rewriting OrthoInfo content to an 8th-grade reading level, scored by BERTScore and Flesch-Kincaid grade.",
+  },
+  {
+    title: "BenchBase: Frictionless Medical AI Evaluation with Full Data Provenance",
+    workshop: "In Progress",
+    question: "How can researchers and companies run medical AI evaluations consistently at scale, and how can anyone actually trust the benchmark results and model claims that follow?",
+    matters: "Reproducible, auditable evaluations are the foundation of trustworthy clinical AI. Without full provenance, results cannot be verified, replicated, or responsibly used to guide real deployment decisions.",
+    did: "We built an open-source framework that runs any set of medical benchmarks in a single pass, assigns each question a unique hash for provenance, and saves every model input and output as a JSONL file, with automatic accuracy and per-benchmark metrics computed out of the box.",
+  },
+  {
+    title: "Lost in Dialect: Bengali Translation Gaps in NYC Public Health Flyers",
+    workshop: "In Progress",
+    question: "Does the Bengali used in NYC public health flyers reflect the dialect its Bengali-speaking residents actually understand, or does a systematic translation gap leave them effectively unserved?",
+    matters: "Dialect mismatch in public health materials is a hidden form of health inequity. When official communications are written in a dialect residents cannot follow, the city's public health reach stops at the door of the very communities it is meant to protect.",
+    did: "We built the first centralized repository of NYC public health flyers cataloged by language, examining whether official health communications are reaching the city's large immigrant population. Using Bengali as a case study, we applied AI to assess dialect accuracy in translations and evaluated whether AI-generated translations better serve the communities they are meant to reach.",
   },
 ];
 
@@ -35,7 +76,7 @@ export default function Home() {
     <div className="bg-black text-white">
       <Navbar />
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black">
 
         {/* Rich central glow */}
@@ -86,8 +127,8 @@ export default function Home() {
           {/* Subtitle */}
           <BlurFade delay={0.4} direction="up" duration={0.6}>
             <p className="text-lg leading-relaxed tracking-wide text-white"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}>
-              AI for better health outcomes,{" "}
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+              Applied AI for better health outcomes,{" "}
               <span style={{ fontFamily: "var(--font-editors)", fontStyle: "italic" }}>everywhere.</span>
             </p>
           </BlurFade>
@@ -130,118 +171,67 @@ export default function Home() {
 
       </section>
 
-      {/* ── Thesis ── */}
+      {/* Thesis */}
       <section className="relative overflow-hidden border-t border-white/[0.06] py-32">
         <div className="pointer-events-none absolute inset-0"
           style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-700/10 blur-[120px]" />
 
         <div className="relative mx-auto max-w-5xl px-6">
-          <BlurFade inView delay={0.1} duration={0.7}>
+          <BlurFade inView blur="0px" delay={0.1} duration={0.7}>
             <h2 className="text-5xl text-white mb-10 md:text-6xl"
               style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
               Thesis
             </h2>
           </BlurFade>
-          <BlurFade inView delay={0.2} duration={0.8}>
+          <BlurFade inView blur="0px" delay={0.2} duration={0.8}>
             <p className="text-xl leading-relaxed text-white max-w-2xl"
               style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
-              AI is transforming healthcare — but cost, privacy, and infrastructure still lock most patients and clinics out entirely.
+              AI is transforming healthcare, but cost, privacy, and infrastructure still lock most patients and clinics out entirely.
             </p>
           </BlurFade>
-          <BlurFade inView delay={0.35} duration={0.7}>
+          <BlurFade inView blur="0px" delay={0.35} duration={0.7}>
             <p className="mt-6 text-xl leading-relaxed text-white max-w-2xl"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}>
-              Open-source models are advancing faster than anyone expected. Local, private, offline inference is already real, and the ceiling keeps rising.
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+              Open-source models make local, private inference real. But access alone is not enough. Clinical AI must also be fair, auditable, and designed with the communities it serves in mind.
             </p>
           </BlurFade>
-          <BlurFade inView delay={0.5} duration={0.7}>
+          <BlurFade inView blur="0px" delay={0.5} duration={0.7}>
             <p className="mt-6 text-xl leading-relaxed text-white max-w-2xl"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}>
-              We are building the health layer on top of them, for patients and clinics everywhere.
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+              We are building and testing applied AI research toward better health outcomes for every patient, everywhere.
             </p>
           </BlurFade>
         </div>
       </section>
 
-      {/* ── Work ── */}
-      <section id="work" className="relative border-t border-white/[0.06] py-28">
+      {/* Stats */}
+      <section className="relative border-t border-white/[0.06] py-20">
         <div className="pointer-events-none absolute inset-0"
-          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-indigo-700/10 blur-[130px]" />
-
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         <div className="relative mx-auto max-w-5xl px-6">
-          <BlurFade inView delay={0.05} duration={0.6}>
-            <h2 className="text-5xl text-white mb-10 md:text-6xl"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
-              Work
-            </h2>
-          </BlurFade>
-
-          <BentoGrid className="md:auto-rows-[200px]">
-            <BlurFade inView delay={0.1} duration={0.6} className="md:col-span-2 md:row-span-2">
-              <BentoCard className="h-full md:text-xl" name={projects[0].name} meta={projects[0].meta}
-                description={projects[0].description} href={projects[0].href} />
-            </BlurFade>
-            <BlurFade inView delay={0.2} duration={0.6} className="md:col-span-1">
-              <BentoCard className="h-full" name={projects[1].name} meta={projects[1].meta}
-                description={projects[1].description} href={projects[1].href} />
-            </BlurFade>
-            <BlurFade inView delay={0.3} duration={0.6} className="md:col-span-1">
-              <BentoCard className="h-full" name={projects[2].name} meta={projects[2].meta}
-                description={projects[2].description} href={projects[2].href} />
-            </BlurFade>
-          </BentoGrid>
-        </div>
-      </section>
-
-      {/* ── Research ── */}
-      <section id="research" className="relative border-t border-white/[0.06] py-28">
-        <div className="pointer-events-none absolute inset-0"
-          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-        <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-blue-800/10 blur-[130px]" />
-
-        <div className="relative mx-auto max-w-5xl px-6">
-          <BlurFade inView delay={0.05} duration={0.6}>
-            <h2 className="text-5xl text-white mb-10 md:text-6xl"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
-              Research
-            </h2>
-          </BlurFade>
-
-          <div className="flex flex-col gap-3">
-            {[
-              {
-                meta: "Structured Output · MedQA",
-                title: "Does Structure Affect Accuracy? Pydantic vs. Unstructured Output on Clinical QA",
-                description: "Testing whether enforcing structured (Pydantic) output changes model accuracy on MedQA benchmark questions across GPT-4o-mini, Gemini, and Claude.",
-              },
-              {
-                meta: "Patient Education · NLP",
-                title: "Simplifying Orthopedic Patient Education with Open-Source LLMs",
-                description: "Evaluating open and closed-source models on rewriting OrthoInfo clinical content to an 8th-grade reading level, measured by BERTScore and Flesch-Kincaid grade.",
-              },
-            ].map((paper, i) => (
-              <BlurFade key={i} inView delay={0.1 + i * 0.1} duration={0.6}>
-                <div className="group flex items-start justify-between rounded-2xl border border-white/[0.07] bg-[#050505] p-7 transition-colors duration-300 hover:border-white/[0.2]">
-                  <div className="flex flex-col gap-2 max-w-2xl">
-                    <span className="text-[10px] tracking-[0.25em] text-white uppercase"
-                      style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
-                      {paper.meta}
-                    </span>
-                    <h3 className="text-base text-white"
-                      style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}>
-                      {paper.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-white"
-                      style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}>
-                      {paper.description}
-                    </p>
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2">
+            {stats.map((stat, i) => (
+              <BlurFade key={i} inView blur="0px" delay={0.05 + i * 0.1} duration={0.6}>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-baseline gap-0.5">
+                    <NumberTicker
+                      value={stat.value}
+                      delay={0.1 + i * 0.1}
+                      className="text-5xl text-white md:text-6xl"
+                      style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 } as React.CSSProperties}
+                    />
+                    {stat.suffix && (
+                      <span className="text-5xl text-white md:text-6xl"
+                        style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
+                        {stat.suffix}
+                      </span>
+                    )}
                   </div>
-                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"
-                    className="mt-1 ml-8 shrink-0 text-white transition-opacity group-hover:opacity-70">
-                    <path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <span className="text-sm tracking-[0.15em] text-white uppercase"
+                    style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+                    {stat.label}
+                  </span>
                 </div>
               </BlurFade>
             ))}
@@ -249,7 +239,130 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
+      {/* Work */}
+      <section id="work" className="relative border-t border-white/[0.06] py-28">
+        <div className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-indigo-700/10 blur-[130px]" />
+
+        <div className="relative mx-auto max-w-5xl px-6">
+          <BlurFade inView blur="0px" delay={0.05} duration={0.6}>
+            <h2 className="text-5xl text-white mb-10 md:text-6xl"
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
+              Work
+            </h2>
+          </BlurFade>
+
+          <div className="flex flex-col gap-3 md:flex-row">
+            {/* Left: big card */}
+            <BlurFade inView blur="0px" delay={0.1} duration={0.6} className="md:flex-[2]">
+              <BentoCard className="h-full min-h-[320px]" name={projects[0].name}
+                description={projects[0].description} href={projects[0].href} />
+            </BlurFade>
+            {/* Right: two stacked cards */}
+            <div className="flex flex-col gap-3 md:flex-1">
+              <BlurFade inView blur="0px" delay={0.2} duration={0.6} className="flex-1">
+                <BentoCard className="h-full min-h-[150px]" name={projects[1].name}
+                  description={projects[1].description} href={projects[1].href} />
+              </BlurFade>
+              <BlurFade inView blur="0px" delay={0.3} duration={0.6} className="flex-1">
+                <BentoCard className="h-full min-h-[150px]" name={projects[2].name}
+                  description={projects[2].description} href={projects[2].href} />
+              </BlurFade>
+            </div>
+          </div>
+
+          {/* Coming Soon */}
+          <BlurFade inView blur="0px" delay={0.4} duration={0.6} className="mt-3">
+            <div className="rounded-2xl border border-white/[0.07] bg-[#050505] p-7">
+              <div className="mb-6">
+                <span className="rounded-full border border-lime-400 bg-lime-500/10 px-3 py-1 text-xs tracking-[0.2em] text-lime-300 uppercase"
+                  style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}>
+                  Coming Soon
+                </span>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-xl text-white"
+                  style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+                  NYS Health Flyer Repository
+                </h3>
+                <p className="text-base leading-relaxed text-white"
+                  style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+                  The first centralized repository of New York State public health flyers, organized by language. Built for research on language availability of public health information and whether AI translations can capture dialect differences that matter to communities.
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Research */}
+      <section id="research" className="relative border-t border-white/[0.06] py-28">
+        <div className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-blue-800/10 blur-[130px]" />
+
+        <div className="relative mx-auto max-w-5xl px-6">
+          <BlurFade inView blur="0px" delay={0.05} duration={0.6}>
+            <h2 className="text-5xl text-white mb-10 md:text-6xl"
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
+              Research
+            </h2>
+          </BlurFade>
+
+          <div className="flex flex-col gap-4">
+            {papers.map((paper, i) => (
+              <BlurFade key={i} inView blur="0px" delay={0.1 + i * 0.1} duration={0.6}>
+                <div className="rounded-2xl border border-white/[0.07] bg-[#050505] p-8 transition-colors duration-300 hover:border-white/[0.15]">
+                  <div className="flex flex-col gap-8 md:flex-row md:gap-0">
+
+                    {/* Left: title */}
+                    <div className="flex flex-col gap-4 md:w-2/5 md:pr-10">
+                      {paper.workshop && (
+                        <span className={`w-fit rounded-full border px-3 py-1 text-xs tracking-[0.15em] uppercase ${
+                          paper.workshop === "In Progress"
+                            ? "border-blue-400 bg-blue-500/15 text-blue-200"
+                            : "border-lime-400 bg-lime-500/15 text-lime-200"
+                        }`}
+                          style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}>
+                          {paper.workshop}
+                        </span>
+                      )}
+                      <h3 className="text-2xl text-white"
+                        style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}>
+                        {paper.title}
+                      </h3>
+                    </div>
+
+                    {/* Right: 3 labeled rows */}
+                    <div className="flex flex-col divide-y divide-white/[0.07] md:flex-1 md:pl-10">
+                      {[
+                        { label: "Question", text: paper.question },
+                        { label: "Why It Matters", text: paper.matters },
+                        { label: "What We Did", text: paper.did },
+                      ].map((part, j) => (
+                        <div key={j} className="py-4 first:pt-0 last:pb-0">
+                          <p className="mb-1.5 text-xs tracking-[0.2em] text-white uppercase"
+                            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}>
+                            {part.label}
+                          </p>
+                          <p className="text-base leading-relaxed text-white"
+                            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
+                            {part.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
       <footer className="border-t border-white/[0.06] py-12">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 text-center">
           <span className="text-xs tracking-[0.2em] text-white uppercase"
@@ -258,7 +371,7 @@ export default function Home() {
           </span>
           <a href="mailto:hello@layeredlabs.ai"
             className="text-xs text-white transition-opacity hover:opacity-70"
-            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}>
+            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
             hello@layeredlabs.ai
           </a>
         </div>

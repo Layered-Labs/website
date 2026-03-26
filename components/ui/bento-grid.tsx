@@ -63,8 +63,8 @@ export function BentoCard({
         <div className="flex items-start justify-between">
           {meta && (
             <span
-              className="text-[10px] tracking-[0.25em] text-white uppercase"
-              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}
+              className="text-xs tracking-[0.25em] text-white uppercase"
+              style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}
             >
               {meta}
             </span>
@@ -74,7 +74,7 @@ export function BentoCard({
             height="13"
             viewBox="0 0 14 14"
             fill="none"
-            className="ml-auto shrink-0 text-white opacity-30 transition-opacity duration-200 group-hover:opacity-70"
+            className="ml-auto shrink-0 text-white opacity-60 transition-opacity duration-200 group-hover:opacity-100"
           >
             <path
               d="M1 13L13 1M13 1H4M13 1v9"
@@ -89,14 +89,14 @@ export function BentoCard({
         {/* Bottom: title + description */}
         <div className="flex flex-col gap-2">
           <h3
-            className="text-white font-light"
-            style={{ fontFamily: "var(--font-satoshi)" }}
+            className="text-lg text-white"
+            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}
           >
             {name}
           </h3>
           <p
-            className="text-sm leading-relaxed text-white"
-            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 300 }}
+            className="text-base leading-relaxed text-white"
+            style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}
           >
             {description}
           </p>
