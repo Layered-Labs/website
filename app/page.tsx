@@ -214,16 +214,15 @@ export default function Home() {
             {stats.map((stat, i) => (
               <BlurFade key={i} inView blur="0px" delay={0.05 + i * 0.1} duration={0.6}>
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-baseline gap-0.5">
+                  <div className="flex items-baseline gap-0.5"
+                    style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
                     <NumberTicker
                       value={stat.value}
                       delay={0.1 + i * 0.1}
                       className="text-5xl text-white md:text-6xl"
-                      style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 } as React.CSSProperties}
                     />
                     {stat.suffix && (
-                      <span className="text-5xl text-white md:text-6xl"
-                        style={{ fontFamily: "var(--font-satoshi)", fontWeight: 200 }}>
+                      <span className="text-5xl text-white md:text-6xl">
                         {stat.suffix}
                       </span>
                     )}
