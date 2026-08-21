@@ -6,6 +6,7 @@ import Image from "next/image"
 const NAV_LINKS = [
   { label: "Work", href: "#work" },
   { label: "Research", href: "#research" },
+  { label: "Data", href: "/data" },
   { label: "GitHub", href: "https://github.com/layered-labs", external: true },
 ]
 
@@ -17,9 +18,11 @@ function scrollTo(href: string) {
     } else if (el) {
       el.scrollIntoView({ behavior: "smooth" })
     }
-  } else {
+  } else if (href.startsWith("http")) {
     window.open(href, "_blank", "noopener,noreferrer")
   }
+  // Other paths (e.g. "/data") are regular next/link-style navigations; the
+  // default anchor behaviour handles them.
 }
 
 export function Navbar() {
@@ -85,7 +88,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               onClick={(e) => {
-                if (!link.external) {
+                if (link.href.startsWith("#")) {
                   e.preventDefault()
                   scrollTo(link.href)
                 }
@@ -142,11 +145,11 @@ export function Navbar() {
             key={link.label}
             href={link.href}
             onClick={(e) => {
-              if (!link.external) {
+              if (link.href.startsWith("#")) {
                 e.preventDefault()
                 setMenuOpen(false)
                 setTimeout(() => scrollTo(link.href), 50)
-              } else {
+              } else if (link.external) {
                 setMenuOpen(false)
               }
             }}
