@@ -101,10 +101,10 @@ export default function Home() {
         />
 
         {/* Light rays */}
-        <LightRays className="z-[2]" color="rgba(120, 160, 255, 0.5)" count={10} speed={16} length="50vh" blur={40} />
+        <LightRays className="z-[2]" color="rgba(120, 160, 255, 0.5)" count={6} speed={16} length="50vh" blur={20} />
 
         {/* Particles */}
-        <Particles className="absolute inset-0 z-[3]" quantity={90} staticity={10} ease={30} size={0.35} color="#ffffff" />
+        <Particles className="absolute inset-0 z-[3]" quantity={50} staticity={10} ease={30} size={0.35} color="#ffffff" />
 
         {/* Vignette bottom */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-72 bg-gradient-to-t from-black to-transparent" />

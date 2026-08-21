@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState, type CSSProperties } from "react"
-import { motion } from "motion/react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
+import { motion, useInView } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -58,7 +58,12 @@ const Ray = ({
   delay,
   duration,
   intensity,
-}: LightRay) => {
+  active,
+}: LightRay & { active: boolean }) => {
+  // When the rays are off-screen (or reduced motion is on) we drop the
+  // infinite rotation opacity animation and rest them at a static, faint
+  // opacity. This stops 10 heavy blurred elements from animating forever
+  // below the fold.
   return (
     <motion.div
       className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-linear-to-b from-[color-mix(in_srgb,var(--light-rays-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
@@ -68,18 +73,26 @@ const Ray = ({
           "--ray-width": `${width}px`,
         } as CSSProperties
       }
-      initial={{ rotate: rotate }}
-      animate={{
-        opacity: [0, intensity, 0],
-        rotate: [rotate - swing, rotate + swing, rotate - swing],
-      }}
-      transition={{
-        duration: duration,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: delay,
-        repeatDelay: duration * 0.1,
-      }}
+      initial={{ rotate, opacity: active ? 0 : intensity * 0.4 }}
+      animate={
+        active
+          ? {
+              opacity: [0, intensity, 0],
+              rotate: [rotate - swing, rotate + swing, rotate - swing],
+            }
+          : { rotate, opacity: intensity * 0.4 }
+      }
+      transition={
+        active
+          ? {
+              duration: duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: delay,
+              repeatDelay: duration * 0.1,
+            }
+          : { duration: 0.3 }
+      }
     />
   )
 }
@@ -87,24 +100,39 @@ const Ray = ({
 export function LightRays({
   className,
   style,
-  count = 7,
+  count = 5,
   color = "rgba(160, 210, 255, 0.2)",
-  blur = 36,
+  blur = 24,
   speed = 14,
   length = "70vh",
   ref,
   ...props
 }: LightRaysProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(containerRef, { margin: "200px", amount: 0 })
   const [rays, setRays] = useState<LightRay[]>([])
   const cycleDuration = Math.max(speed, 0.1)
+
+  const [reducedMotion, setReducedMotion] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    setReducedMotion(mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
+    mq.addEventListener("change", onChange)
+    return () => mq.removeEventListener("change", onChange)
+  }, [])
 
   useEffect(() => {
     setRays(createRays(count, cycleDuration))
   }, [count, cycleDuration])
 
+  // Animate only when the section is on screen and the user has not asked for
+  // reduced motion.
+  const active = isInView && !reducedMotion
+
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       className={cn(
         "pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[inherit]",
         className
@@ -141,7 +169,7 @@ export function LightRays({
           }
         />
         {rays.map((ray) => (
-          <Ray key={ray.id} {...ray} />
+          <Ray key={ray.id} {...ray} active={active} />
         ))}
       </div>
     </div>
