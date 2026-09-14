@@ -1,6 +1,4 @@
-import { Particles } from "@/components/ui/particles";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { LightRays } from "@/components/ui/light-rays";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { MagicCard } from "@/components/ui/magic-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
@@ -79,35 +77,21 @@ export default function Home() {
       {/* Hero */}
       <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black">
 
-        {/* Rich central glow */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[0]"
-          style={{
-            background: [
-              "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29, 78, 216, 0.55) 0%, transparent 70%)",
-              "radial-gradient(ellipse 50% 40% at 30% 20%, rgba(99, 102, 241, 0.2) 0%, transparent 60%)",
-              "radial-gradient(ellipse 40% 30% at 70% 10%, rgba(14, 165, 233, 0.15) 0%, transparent 55%)",
-            ].join(", "),
-          }}
+        {/* Background video */}
+        <video
+          className="absolute inset-0 z-[0] h-full w-full object-cover"
+          src="/hero-bg.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
 
-        {/* Dot grid */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[1]"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Light rays */}
-        <LightRays className="z-[2]" color="rgba(120, 160, 255, 0.5)" count={6} speed={16} length="50vh" blur={20} />
-
-        {/* Particles */}
-        <Particles className="absolute inset-0 z-[3]" quantity={50} staticity={10} ease={30} size={0.35} color="#ffffff" />
+        {/* Dark overlay for text legibility */}
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-black/55" />
 
         {/* Vignette bottom */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-72 bg-gradient-to-t from-black to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-72 bg-gradient-to-t from-black to-transparent" />
 
         {/* Hero content */}
         <div className="relative z-10 flex flex-col items-center gap-8 px-4 text-center">
