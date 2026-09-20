@@ -38,7 +38,7 @@ function valStr(r: ClinicRow, key: ColumnKey): string {
 
 function formatCell(r: ClinicRow, key: ColumnKey): string {
   const v = r[key]
-  if (v == null || v === "") return "—"
+  if (v == null || v === "") return "-"
   if (typeof v === "boolean") return v ? "Yes" : "No"
   if (typeof v === "number") {
     const col = COLUMNS.find((c) => c.key === key)!
@@ -52,18 +52,8 @@ function formatCell(r: ClinicRow, key: ColumnKey): string {
 function Pill({ text }: { text: string }) {
   const good = ["excellent", "good"].includes(text.toLowerCase())
   const poor = ["poor"].includes(text.toLowerCase())
-  return (
-    <span
-      className={cn(
-        "inline-block rounded-full border px-2 py-[1px] text-[10px] tracking-wider uppercase",
-        good && "border-lime-400/40 bg-lime-500/10 text-lime-300",
-        poor && "border-red-400/40 bg-red-500/10 text-red-300",
-        !good && !poor && "border-white/15 bg-white/5 text-white/70"
-      )}
-    >
-      {text}
-    </span>
-  )
+  const tone = good ? "green" : poor ? "orange" : ""
+  return <span className={cn("tag", tone)} style={tone ? undefined : { background: "var(--paper-2)", color: "var(--ink-2)" }}>{text}</span>
 }
 
 export function DataTable({ rows }: { rows: ClinicRow[] }) {
@@ -100,31 +90,16 @@ export function DataTable({ rows }: { rows: ClinicRow[] }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#050505]">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
+    <div className="dt-wrap">
+      <div className="dt-scroll">
+        <table className="dt">
           <thead>
-            <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+            <tr>
               {COLUMNS.map((col) => (
-                <th
-                  key={col.key}
-                  onClick={() => toggleSort(col.key)}
-                  className={cn(
-                    "cursor-pointer select-none whitespace-nowrap px-4 py-3 text-[11px] tracking-[0.15em] text-white uppercase",
-                    col.align === "right" && "text-right"
-                  )}
-                  style={{ fontFamily: "var(--font-satoshi)", fontWeight: 500 }}
-                >
-                  <span className="inline-flex items-center gap-1">
-                    {col.label}
-                    <span
-                      className={cn(
-                        "text-[9px] text-white/40",
-                        sortKey === col.key ? "text-lime-300" : ""
-                      )}
-                    >
-                      {sortKey === col.key ? (sortDir === "asc" ? "▲" : "▼") : "↕"}
-                    </span>
+                <th key={col.key} onClick={() => toggleSort(col.key)} className={col.align === "right" ? "r" : ""}>
+                  {col.label}{" "}
+                  <span style={{ color: sortKey === col.key ? "var(--ink)" : "var(--ink-3)", fontSize: "0.7em" }}>
+                    {sortKey === col.key ? (sortDir === "asc" ? "▲" : "▼") : "↕"}
                   </span>
                 </th>
               ))}
@@ -132,43 +107,21 @@ export function DataTable({ rows }: { rows: ClinicRow[] }) {
           </thead>
           <tbody>
             {sorted.map((r, i) => (
-              <tr
-                key={`${r.zipcode}-${i}`}
-                className={cn(
-                  "border-b border-white/[0.04] transition-colors hover:bg-white/[0.03]",
-                  i % 2 === 1 && "bg-white/[0.015]"
-                )}
-              >
-                <td className="whitespace-nowrap px-4 py-3 tabular-nums text-white" style={{ fontFamily: "var(--font-satoshi)", fontWeight: 400 }}>
-                  {r.zipcode}
-                </td>
-                <td className="whitespace-nowrap px-4 py-3 text-white/80">{r.borough}</td>
-                <td className="px-4 py-3 text-white/80">{r.neighborhood || "—"}</td>
-                <td className="px-4 py-3 text-right tabular-nums text-white/80">
-                  {formatCell(r, "noInternetPct")}
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap text-white/80">
-                  {formatCell(r, "fiberAvailable")}
-                </td>
-                <td className="px-4 py-3 text-right tabular-nums text-white/80">
-                  {formatCell(r, "maxDlMbps")}
-                </td>
-                <td className="px-4 py-3 text-right tabular-nums text-white">
-                  {formatCell(r, "monthlyCostUsd")}
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap">
-                  {r.reliabilityTier ? (
-                    <Pill text={r.reliabilityTier} />
-                  ) : (
-                    <span className="text-white/40">—</span>
-                  )}
-                </td>
+              <tr key={`${r.zipcode}-${i}`}>
+                <td>{r.zipcode}</td>
+                <td>{r.borough}</td>
+                <td>{r.neighborhood || "-"}</td>
+                <td className="r">{formatCell(r, "noInternetPct")}</td>
+                <td>{formatCell(r, "fiberAvailable")}</td>
+                <td className="r">{formatCell(r, "maxDlMbps")}</td>
+                <td className="r">{formatCell(r, "monthlyCostUsd")}</td>
+                <td>{r.reliabilityTier ? <Pill text={r.reliabilityTier} /> : "-"}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="border-t border-white/[0.07] px-4 py-3 text-[11px] text-white/50">
+      <div className="small muted" style={{ padding: "0.7rem 1rem" }}>
         {rows.length} ZIP codes · {rows.filter((r) => r.fiberAvailable).length} with fiber · click a column to sort
       </div>
     </div>

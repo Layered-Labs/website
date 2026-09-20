@@ -44,7 +44,7 @@ export async function getClinicRows(): Promise<ClinicRow[]> {
     rows = await fetchHfRows()
   } catch (err) {
     // If the live fetch fails (network, HF down), we still prerender the
-    // section shell so the page never breaks — just with no rows.
+    // section shell so the page never breaks, just with no rows.
     console.error("[data] fetch failed, rendering empty table:", err)
     return []
   }

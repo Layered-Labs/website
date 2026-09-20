@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Instrument_Serif } from "next/font/google";
-import { SmoothScroll } from "@/components/smooth-scroll";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -12,7 +11,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: "Layered Labs",
-  description: "Applied AI lab building health applications on open-source models, so AI works for patients and clinicians anywhere, even offline.",
+  description: "Applied AI for better health outcomes, everywhere.",
 };
 
 export default function RootLayout({
@@ -30,7 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScroll />
+        <a className="skip" href="#main">Skip to content</a>
         {children}
       </body>
     </html>
