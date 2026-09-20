@@ -3,11 +3,10 @@ import Image from "next/image";
 const LINKS = [
   { label: "About", href: "/#about" },
   { label: "Work", href: "/#work" },
-  { label: "Data", href: "/data" },
   { label: "GitHub", href: "https://github.com/layered-labs" },
 ];
 
-export function SiteHeader({ current }: { current?: "/" | "/data" }) {
+export function SiteHeader({ current }: { current?: "/" }) {
   return (
     <div className="wrap">
       <header className="site-header">
