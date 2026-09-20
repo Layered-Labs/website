@@ -38,7 +38,7 @@ export default function Home() {
           <h2 className="block-title">About us</h2>
           <RevealWords
             className="about-lede"
-            text="We are an {purple|applied AI safety} lab in {blue|New York City}. We build AI for health, and we test how {red|medical AI} fails before patients depend on it."
+            text="We are an {purple|🤖 applied AI safety} lab in {blue|🗽 New York City}. We build AI for health, and we test how {red|🩺 medical AI} fails before patients depend on it."
           />
           <p className="about-body muted">
             AI is entering medicine, and its safety decides whether it helps or harms.

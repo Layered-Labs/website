@@ -67,7 +67,8 @@ export function RevealWords({ text, className }: { text: string; className?: str
     }
   }
   text.slice(last).split(" ").filter(Boolean).forEach((w) => tokens.push({ text: w }));
-  const plain = text.replace(re, "$2");
+  // screen readers get the sentence without the emoji
+  const plain = text.replace(re, "$2").replace(/\p{Extended_Pictographic}\uFE0F?\s*/gu, "");
 
   useEffect(() => {
     const el = ref.current;
