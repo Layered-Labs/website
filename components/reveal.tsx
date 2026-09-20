@@ -72,7 +72,7 @@ export function RevealWords({ text, className }: { text: string; className?: str
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || reducedMotion()) return;
+    if (!el) return;
     setArmed(true);
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -117,7 +117,7 @@ export function StatLabel() {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || reducedMotion()) return;
+    if (!el) return;
     setArmed(true);
     const io = new IntersectionObserver(
       ([entry]) => {
