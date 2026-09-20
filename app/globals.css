@@ -151,3 +151,5 @@ html { scroll-padding-top: 1.5rem; }
 .hl[data-tone="blue"] { --c-bg: var(--blue-bg); --c-fg: #1d5f86; }
 .about-lede .hl { margin: 0 0.06em; }
 .hl[data-tone="red"] { --c-bg: var(--red-bg); --c-fg: #a12f2a; }
+
+.site-nav .pill-btn { padding: 0.45rem 1.1rem; font-size: 0.92rem; }
