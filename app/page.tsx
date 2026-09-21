@@ -14,8 +14,8 @@ export default function Home() {
             Applied AI for better health outcomes, <em>everywhere.</em>
           </h1>
           <p className="hero-copy fade" style={{ ["--d" as string]: "280ms" }}>
-            We build AI for health and test how medical AI fails before patients depend on it: whether it treats
-            people fairly, stays accurate, and runs privately in a clinic.
+            We build AI for health and study how medical AI fails, and who it fails: whether it treats people
+            fairly, stays accurate, and runs privately in a clinic.
           </p>
           <div className="hero-actions fade" style={{ ["--d" as string]: "420ms" }}>
             <a className="pill-btn soft" href="mailto:hello@layeredlabs.ai">Join us</a>
@@ -38,7 +38,7 @@ export default function Home() {
           <h2 className="block-title">About us</h2>
           <RevealWords
             className="about-lede"
-            text="We are an {purple|🤖 applied AI safety} lab in {blue|🗽 New York City}. We build AI for health, and we test how {red|🩺 medical AI} fails before patients depend on it."
+            text="We are an {purple|🤖 applied AI safety} lab in {blue|🗽 New York City}. We build AI for health, and we study how {red|🩺 medical AI} fails, and who it fails."
           />
           <p className="about-body muted">
             AI is entering medicine, and its safety decides whether it helps or harms.
