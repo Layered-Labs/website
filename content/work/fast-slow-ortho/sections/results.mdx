@@ -1,0 +1,23 @@
+import { calibration, eachModelAlone, jevFirst } from "../data/tables";
+
+### Jev knows when it is right
+
+The surer <ModelPill model="jev" label="Jev" /> was, the more often it was right.
+
+<Table data={calibration} />
+
+### Each model alone
+
+On their own, the reasoning models score higher. <ModelPill model="jev" label="Jev" /> is the fastest and among the cheapest.
+
+<Table data={eachModelAlone} />
+
+The fast models and <ModelPill model="deepseek" label="DeepSeek" /> also answered all 3,019 questions, with nearly the same scores: <ModelPill model="jev" label="Jev" /> 83.9%, <ModelPill model="liquid" label="Liquid d1.1" /> 85.0%, <ModelPill model="liquid" label="Liquid d1-ultra" /> 86.4% and <ModelPill model="deepseek" label="DeepSeek" /> 90.4%.
+
+### Jev first, a reasoning model when Jev is unsure
+
+Every pairing kept its reasoning model's score, including <ModelPill model={["jev", "claude"]} label={["Jev", "Claude Opus"]} />. Change is in percentage points against the same reasoning model answering every question.
+
+<Table data={jevFirst} />
+
+Combining all three fast models instead of <ModelPill model="jev" label="Jev" /> alone also matches <ModelPill model="claude" label="Claude Opus" /> (94.2%), at 2.5× lower cost.

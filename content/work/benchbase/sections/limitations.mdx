@@ -1,0 +1,6 @@
+- **Text multiple choice only.** Questions with images, and free-text answers, need an image field and their own scoring contract first.
+- **Shared hashes.** The hash covers the question and answer text only, so short generic questions with the same answer can share one: 99 items in MMLU Medical do. Evaluation adds an item ID that includes the options, so different questions are never merged.
+- **Strict scoring.** A model that answers correctly but in the wrong format is scored wrong. This is deliberate, but it lowers scores for models that do not follow instructions well.
+- **Token budgets.** Reasoning models can spend their whole budget thinking and return nothing. Those replies are recorded as truncated and scored wrong; the default budget is 8,192 tokens.
+- **Contamination.** BenchBase does not check whether a model saw these questions during training.
+- **TRIAGE license.** TRIAGE is published with its authors' permission while they choose a license.

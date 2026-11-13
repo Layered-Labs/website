@@ -1,0 +1,4 @@
+- **One benchmark, 100 requests.** AdvBench covers a particular set of harms, and 100 requests is a sample. The gap may differ on other benchmarks and on larger samples.
+- **An automated judge.** Compliance was scored by <ModelPill model="openai" label="GPT-4o-mini" />, not by people. Borderline responses are where an automated judge is least reliable, and one request in the gap was borderline.
+- **Plain requests only.** The audit used no system prompt and no jailbreak. Deployed products often add system prompts, which may change refusals in either direction, and adversaries do use jailbreaks, which would likely widen the gap.
+- **A snapshot.** Models are updated often, so these rates describe the versions tested, not the models today.

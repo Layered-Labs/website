@@ -1,0 +1,7 @@
+import { severity } from "../data/tables";
+
+One row per photograph: the image, its severity grade on the four-level Hayashi scale, the original lesion-count label, the number of lesions boxed, the boxes themselves, and its train or test membership in each fold.
+
+<Table data={severity} />
+
+Moderate acne is the most common grade and very severe the least, so a model that always guesses moderate is right 43% of the time.

@@ -1,0 +1,5 @@
+Medical benchmarks ship in different formats. One stores the answer as a letter, another as an index, another as text, and some keep a reading passage next to the question. Before a model can be tested, someone has to write code to read each one.
+
+How a model is asked, and how its reply is read, changes the score. A different prompt, a different temperature, or a looser way of finding the answer in a long reply gives a different number for the same model on the same questions. Most papers choose their own, so two reports of the same model on the same benchmark often cannot be compared.
+
+That makes every new model, and every new benchmark, a small project. BenchBase turns both into a configuration change: one schema for every benchmark, and one fixed way of asking and scoring.

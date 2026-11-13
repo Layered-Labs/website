@@ -1,0 +1,12 @@
+For research on injury trends, product safety, sports and recreation injuries, and emergency department use, and for policy analysis and journalism.
+
+Each row is one sampled visit, not one injury nationwide. National estimates come from summing the `Weight` column, never from counting rows:
+
+```python
+import pandas as pd
+df = pd.read_parquet("hf://datasets/Layered-Labs/neiss-injury-data/neiss_all.parquet")
+picks = df[(df["Product_1"] == 3235) & (df["year"] >= 2015)]  # pickleball
+print(f"{picks['Weight'].sum():,.0f} estimated ED visits, 2015 to 2024")
+```
+
+It covers emergency visits only: injuries treated elsewhere, and deaths without an emergency visit, are not in it. Race and ethnicity coding changed over the years, so compare those fields across years with care.

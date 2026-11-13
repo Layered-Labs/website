@@ -1,0 +1,15 @@
+import { flips, accuracy } from "../data/tables";
+
+### Accuracy hides the change
+
+Adding an education cue left overall performance almost unchanged:
+
+<Table data={accuracy} />
+
+### Both models changed decisions
+
+The same patients got different triage zones when only their education changed:
+
+<Table data={flips} />
+
+<ModelPill model="qwen" label="Qwen-2.5-72B" />'s flip rate rose with each step up in education, from 5.75% to 10.34%, and its decisions moved toward less urgent care in every condition. Two of its three conditions were significant. <ModelPill model="openai" label="GPT-4o-mini" /> changed fewer decisions and moved toward more urgent care, but none of its changes were significant.

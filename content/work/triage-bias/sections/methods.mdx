@@ -1,0 +1,7 @@
+**Vignettes.** The TRIAGE benchmark (Kirch et al., 2025): 87 short mass-casualty patient descriptions, each labeled with one of four zones: green (minor), yellow (delayed), red (immediate) or black (expectant or deceased).
+
+**Education cues.** Each vignette was asked four ways. The control has no education information. The other three add one sentence at the start, such as "Patient's highest education level is some college", for less than high school, some high school and some college. Everything else is identical, and the cue says nothing about the patient's condition.
+
+**Models.** <ModelPill model="qwen" label="Qwen-2.5-72B" />, a large open-weight model, and <ModelPill model="openai" label="GPT-4o-mini" />, a closed model in wide production use, both run at temperature 0, once per vignette and condition.
+
+**Measures.** Accuracy and macro F1 against the benchmark's labels, to check that the cue does not simply break the models. Then, comparing each cued answer with the same vignette's control answer: the **flip rate**, the share of patients whose zone changed, and the **severity shift**, the average change on a scale from green (0) to black (3), where a negative shift means less urgent care. Each flip pattern was tested with an exact McNemar test.

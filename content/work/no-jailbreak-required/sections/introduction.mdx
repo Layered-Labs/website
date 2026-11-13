@@ -1,0 +1,5 @@
+Safety for language models is usually measured one model at a time: how often does this model refuse a harmful request? By that measure, frontier models do well. Each refuses nearly everything a standard harmful-request benchmark asks.
+
+But people do not use one model. The same request can be sent to many models from many providers, each trained to refuse on its own terms. If any one of them complies, the request is answered, however many others refused. The protection a user faces is not that of the average model, or the best one, but of the most permissive one.
+
+This matters most where these models are being deployed: health care and public information, where a single harmful answer can do damage. This work measures how large that gap is under ordinary use, with no jailbreak at all.

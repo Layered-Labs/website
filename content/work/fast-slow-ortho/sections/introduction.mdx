@@ -1,0 +1,7 @@
+The most accurate AI models on medical exam questions are reasoning models: <ModelPill model="openai" label="ChatGPT" />, <ModelPill model="claude" label="Claude" /> and <ModelPill model="gemini" label="Gemini" /> write out their reasoning before they answer. That makes them slow and expensive. A typical answer takes 3 to 6 seconds, and every question pays for the reasoning that comes before the answer.
+
+System One models are a new kind of AI that skips that step. <ModelPill model="jev" label="Jev" /> from TypeSafe, and <ModelPill model="liquid" label="Liquid d1-ultra" /> and <ModelPill model="liquid" label="Liquid d1.1" /> from Liquid AI, read a question and return an answer straight away, along with how sure they are. TypeSafe released <ModelPill model="jev" label="Jev" /> in September 2026. These models are very fast and very cheap, but on their own they are less accurate than the large reasoning models.
+
+That tradeoff only matters if every question has to go to one model or the other. If a fast model's confidence can be trusted, it can answer the questions it is sure about and pass the rest to a reasoning model. The question this work asks is whether a System One model's own confidence is good enough to decide which orthopaedic exam questions need an expensive reasoning model, and which do not.
+
+Orthopaedics gives a clean test: MedMCQA contains 3,019 orthopaedics questions with a known correct answer, enough to measure how often a fast model is right at each level of confidence.

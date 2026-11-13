@@ -1,0 +1,9 @@
+**Questions.** All 3,019 orthopaedics questions in MedMCQA that have a known correct answer. The fast models answered every question. To keep costs low, the reasoning models answered a random set of 500, and every comparison between models uses those same 500 questions.
+
+**Models.** Three System One models, which answer without reasoning: <ModelPill model="jev" label="Jev 1.14" /> (TypeSafe), <ModelPill model="liquid" label="Liquid d1-ultra" /> and <ModelPill model="liquid" label="Liquid d1.1" /> (Liquid AI). Four reasoning models: <ModelPill model="deepseek" label="DeepSeek v4.1 Flash" />, <ModelPill model="openai" label="GPT-6 Sol" /> (OpenAI), <ModelPill model="gemini" label="Gemini 3.1 Pro" /> (Google) and <ModelPill model="claude" label="Claude Opus 5.5" /> (Anthropic). <ModelPill model="deepseek" label="DeepSeek" /> was run with reasoning both on and off.
+
+**Routing.** <ModelPill model="jev" label="Jev" /> answers every question first. If its confidence is at or above a cutoff, its answer stands. If not, the question goes to a reasoning model, whose answer is used instead. We tested two cutoffs, 0.95 and 0.80, and chose both before running the reasoning models.
+
+**Measures.** For each model and each pairing we report accuracy with a 95% confidence interval, cost per 1,000 questions, and the median seconds per question. To check whether a pairing differs from its reasoning model alone, we used an exact McNemar test on the same 500 questions.
+
+**A fair test.** Every model got the same instructions. Every question and every answer was saved, with code that rebuilds every number in this write-up. Running every test together cost under $9. One fast model, Parallel, was left out because it searches the internet, where these answers can be found.

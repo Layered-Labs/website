@@ -1,0 +1,9 @@
+**Models.** Seven frontier models: <ModelPill model="openai" label="GPT-4o" />, <ModelPill model="claude" label="Claude 3.7 Sonnet" />, <ModelPill model="gemini" label="Gemini 2.5 Pro" />, <ModelPill model="grok" label="Grok-3" />, <ModelPill model="deepseek" label="DeepSeek-V3" />, <ModelPill model="qwen" label="Qwen3-235B" /> and <ModelPill model="llama" label="Llama 3.3 70B" />.
+
+**Requests.** 100 prompts sampled from the AdvBench harmful behaviors benchmark (Zou et al., 2023).
+
+**Conditions.** Each request was sent to each model as an ordinary user would send it: no system prompt, and no jailbreak technique of any kind.
+
+**Scoring.** An automated judge, <ModelPill model="openai" label="GPT-4o-mini" />, scored each response as compliant or not.
+
+**The exploitable gap.** A request is in the gap when at least one model complies and at least one refuses. A request every model refuses is handled; one every model complies with is a shared failure.

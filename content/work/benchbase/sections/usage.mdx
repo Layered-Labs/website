@@ -1,0 +1,20 @@
+Install from GitHub and run any model on OpenRouter:
+
+```bash
+git clone https://github.com/Layered-Labs/benchbase-med && cd benchbase-med
+pip install -e .
+benchbase doctor
+benchbase run --model qwen/qwen3-8b --limit 100
+```
+
+`--limit 100` runs a random 100 questions from each benchmark; the same `--seed` gives the same sample. Without it, BenchBase runs every question. Several models at once, `--model a,b,c`, runs each one and then compares them.
+
+Each run writes plain files that open anywhere: every question and response, metrics per benchmark and split, a one-page report, figures at 300 dpi, and a CSV with one row per scored question.
+
+Anything that speaks the OpenAI chat format can be scored like a model, including a local model, an ensemble, or a retrieval pipeline:
+
+```bash
+benchbase run --model my-system --base-url http://localhost:8000/v1
+```
+
+Adding a benchmark takes three steps: write a converter, add an entry to the registry, and run `benchbase check <key>`, which tests the converter against a live sample. Continuous integration runs the same check on every pull request.

@@ -1,35 +1,38 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Instrument_Serif } from "next/font/google";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: "italic",
-  subsets: ["latin"],
-  variable: "--font-instrument",
+const serif = Source_Serif_4({ subsets: ["latin"], axes: ["opsz"], variable: "--font-serif", display: "swap" });
+// The same Satoshi files as the ortho write-up (fast-and-slow-ortho.vercel.app),
+// served from this site.
+const satoshi = localFont({
+  src: [
+    { path: "./fonts/Satoshi-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Satoshi-500.woff2", weight: "500", style: "normal" },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
 });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
+
+const description =
+  "Layered Labs is a research lab in New York City. We test whether medical AI is fair, accurate and private, and we publish the data behind every test.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://layeredlabs.ai"),
   title: "Layered Labs",
-  description: "Applied AI for better health outcomes, everywhere.",
+  description,
+  openGraph: { title: "Layered Labs", description, url: "/", siteName: "Layered Labs", type: "website" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`antialiased ${instrumentSerif.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400,300,200&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${satoshi.variable} ${serif.variable} ${mono.variable}`}>
       <body>
-        <a className="skip" href="#main">Skip to content</a>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

@@ -1,0 +1,7 @@
+Neither model's triage was invariant to education, even though no clinical detail changed and decoding was deterministic, so the differences are not random noise.
+
+The two models erred in opposite directions. <ModelPill model="qwen" label="Qwen-2.5-72B" /> moved toward undertriage, which in a mass-casualty event can delay care for someone badly hurt. <ModelPill model="openai" label="GPT-4o-mini" /> moved toward overtriage, which uses up scarce resources faster. Bias in triage is a matter of direction as well as size.
+
+One possible explanation is that an education cue brings in learned associations about status or competence that then affect how urgent a case seems. That is a hypothesis; this study does not test the mechanism.
+
+The broader lesson is about evaluation. Accuracy and F1 were stable while individual decisions changed. Testing a model for clinical use needs to include whether its decisions stay the same for patients who are the same in every way that matters.

@@ -1,0 +1,13 @@
+The result rests on one property: <ModelPill model="jev" label="Jev" />'s confidence is calibrated. On the half of questions where it is at least 95% sure, it is right 98.5% of the time, and <ModelPill model="claude" label="Claude Opus" /> does no better on those questions. Passing only the other half on loses nothing, which is why every pairing kept its reasoning model's score.
+
+The main gain is speed. A typical answer comes back 5 to 26 times faster, depending on the reasoning model and the cutoff, because half or more of the questions never reach the slow model. The cost savings are smaller, 1.1 to 2.5 times, because the questions that get passed on are the hard ones, which are also the most expensive to answer.
+
+The cutoff is a choice between safety and cost. At 0.95, the <ModelPill model={["jev", "claude"]} label={["Jev", "Claude Opus"]} /> pairing scores exactly what <ModelPill model="claude" label="Claude Opus" /> scores alone. At 0.80, a third of questions are passed on instead of half, and the pairing costs 2.5 times less, with a difference from <ModelPill model="claude" label="Opus" /> alone that is within chance.
+
+<ModelPill model="jev" label="Jev" /> is not a replacement for a reasoning model. On its own it scored 82.8%, far below <ModelPill model="claude" label="Claude Opus" />. Its value is as a fast first filter that knows its limits. Two versions of <ModelPill model="jev" label="Jev" /> gave the same results.
+
+### What comes next
+
+- Remove the questions that refer to an image the models never saw, and rerun.
+- Review the 14 questions every model got wrong: did the models fail, is the answer key wrong, or is the question unclear?
+- Report scores by subspecialty: trauma, sports, spine, paediatrics, tumours, hand and joint replacement.

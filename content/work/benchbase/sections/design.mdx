@@ -1,0 +1,11 @@
+BenchBase has four parts, and each one makes a single decision.
+
+**Converters and the registry.** Each benchmark has a converter that maps its rows into the shared schema, and an entry in one registry file with its source and license. Adding a benchmark means writing a converter and adding an entry, and nothing else.
+
+**One schema.** Every question becomes the same record: the question, an optional reading passage, the options, the answer, its split, and a SHA-256 hash of the question and answer text that stays the same however the options are ordered. The schema decides what is malformed: an empty option, an answer that matches no option, duplicate option keys, or fewer than two options. A row that fails is rejected and logged, never scored.
+
+**One scoring contract.** Every model gets the same zero-shot prompt, with its version recorded on every result, at temperature 0, and must reply with only the key of the option it chose. The reply must be exactly one of the question's option keys. Nothing is extracted or repaired: anything else counts as no answer and is scored wrong.
+
+**A resumable runner.** Questions are streamed from Hugging Face one row at a time, so nothing is downloaded up front, and every response is written to disk the moment it returns. An interrupted run loses nothing and continues where it stopped. Comparisons between models use only the questions every model answered, with an exact McNemar test, Holm correction across pairs, and paired bootstrap intervals.
+
+On every merge, GitHub Actions converts each benchmark and publishes it to Hugging Face. GitHub is the source of truth; Hugging Face is the build output.

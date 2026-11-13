@@ -1,0 +1,9 @@
+import { benchmarks, conversion } from "../data/tables";
+
+Every source row is checked against the schema when it is converted. All five benchmarks convert with almost no losses:
+
+<Table data={conversion} />
+
+<Table data={benchmarks} />
+
+The test suite runs in two parts. The offline tests cover the schema, the converter base class, the registry, and the whole evaluation pipeline against a stub model, so they run anywhere in seconds. The network tests run every registered converter against its live source on Hugging Face. A registry entry without a license fails the tests, so a benchmark that cannot be published cannot be merged.

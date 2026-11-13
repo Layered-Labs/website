@@ -1,0 +1,6 @@
+Nothing was re-annotated. The fracture labels and boxes are the original pediatric radiologists' annotations.
+
+- **Fracture** (`fracture_visible`) is the primary label. A finer AO fracture code is included where the source has one.
+- **Confounders.** Casts, metal, osteopenia and diagnostic uncertainty each have their own column, and `has_confound` marks any of them, so a clean test subset is one filter away.
+- **Boxes** cover nine kinds of finding, from fractures to soft-tissue swelling. An image without boxes is not necessarily normal: only findings the radiologists marked are boxed.
+- **A fixed bug.** An early version stored the training images as nearly blank 8-bit files. All 14,234 were pulled again from the source and checked pixel by pixel against the other splits.

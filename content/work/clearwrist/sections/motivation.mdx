@@ -1,0 +1,3 @@
+GRAZPEDWRI-DX is one of the largest public sets of children's wrist X-rays, but it ships as four zip archives (16 GB), a separate table of labels and a separate folder of boxes, joined by file name.
+
+Copies on Hugging Face stripped the labels, leaving images with no fracture label, no patient ID and no boxes, and no way to build a fair test split. A model can then be tested on X-rays of a child it has already seen in training, which makes it look better than it is.

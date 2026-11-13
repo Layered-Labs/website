@@ -1,0 +1,9 @@
+On Hugging Face as [Layered-Labs/clearwrist-pediatric-wrist-xray](https://huggingface.co/datasets/Layered-Labs/clearwrist-pediatric-wrist-xray), with the images stored inside the files:
+
+```python
+from datasets import load_dataset
+ds = load_dataset("Layered-Labs/clearwrist-pediatric-wrist-xray")
+clean_test = ds["test"].filter(lambda r: r["has_confound"] == 0)
+```
+
+Released under CC BY 4.0, the same license as the source. All images are de-identified.
