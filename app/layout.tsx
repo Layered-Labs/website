@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const serif = Source_Serif_4({ subsets: ["latin"], axes: ["opsz"], variable: "--font-serif", display: "swap" });
 // The same Satoshi files as the ortho write-up (fast-and-slow-ortho.vercel.app),
 // served from this site.
 const satoshi = localFont({
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${satoshi.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang="en" className={`${satoshi.variable} ${mono.variable}`}>
       <body>
         <a className="skip" href="#main">
           Skip to content

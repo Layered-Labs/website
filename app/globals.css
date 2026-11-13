@@ -114,7 +114,7 @@ a.ix:hover .ixgo span { transform: translateX(4px); }
 /* mission */
 .mission { padding-top: clamp(96px, 11vw, 144px); padding-bottom: clamp(96px, 11vw, 144px); display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .mission-mark { width: 44px; height: 44px; flex: none; }
-.mission-q { margin: 0; max-width: 820px; font-family: var(--font-serif), Georgia, serif; font-size: clamp(28px, 3.2vw, 42px); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.mission-q { margin: 0; max-width: 820px; font-size: clamp(28px, 3.2vw, 42px); font-weight: 500; line-height: 1.12; letter-spacing: -0.035em; text-wrap: balance; }
 .mission .sp { max-width: 560px; }
 .mission-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 6px; }
 
