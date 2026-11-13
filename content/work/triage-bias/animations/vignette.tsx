@@ -26,6 +26,8 @@ function Card({ side, t0 }: { side: (typeof SIDES)[number]; t0: number }) {
           style={{
             fontSize: 14,
             minHeight: 38,
+            minWidth: 0,
+            overflowWrap: "anywhere",
             display: "flex",
             alignItems: "center",
             padding: "0 10px",
@@ -43,29 +45,27 @@ function Card({ side, t0 }: { side: (typeof SIDES)[number]; t0: number }) {
         ))}
         <span style={{ fontSize: 13, color: C.mid }}>Same clinical details</span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+      <div style={{ display: "grid", gap: 6 }}>
         <span style={{ fontSize: 13, color: C.mid }}>Triage zone</span>
         <div
           style={{
-            minWidth: 110,
             height: 48,
-            padding: "0 16px",
             background: side.color,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            gap: 10,
             fontSize: 18,
             fontWeight: 500,
             color: C.ink,
             opacity: zone,
-            transform: `scale(${0.9 + 0.1 * zone})`,
-            outline: changed ? `3px solid ${C.lime}` : undefined,
-            outlineOffset: 3,
+            transform: `scale(${0.96 + 0.04 * zone})`,
+            boxShadow: changed ? `inset 0 0 0 3px ${C.lime}, inset 0 0 0 4.5px ${C.ink}` : undefined,
           }}
         >
           {side.zone}
+          {changed && <span style={{ fontSize: 13, fontWeight: 500, background: C.lime, padding: "2px 8px" }}>Changed</span>}
         </div>
-        {changed && <span style={{ fontSize: 15, fontWeight: 500, opacity: zone }}>Changed</span>}
       </div>
     </div>
   );
@@ -73,7 +73,7 @@ function Card({ side, t0 }: { side: (typeof SIDES)[number]; t0: number }) {
 
 export default function Vignette() {
   return (
-    <Stage style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }}>
+    <Stage style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 20 }}>
       <Card side={SIDES[0]} t0={0.2} />
       <Card side={SIDES[1]} t0={1.3} />
     </Stage>
