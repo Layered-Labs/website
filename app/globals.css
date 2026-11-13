@@ -2,7 +2,9 @@
    rules #ECECEC / #DCDCDC, Lime #C6F432 (one highlight per view).
    Square corners everywhere. Hairlines only between list rows. */
 
+/* Light only; see viewport in app/layout.tsx. */
 :root {
+  color-scheme: only light;
   --font-sans: var(--font-satoshi), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --gutter: clamp(20px, 5vw, 40px);
 }

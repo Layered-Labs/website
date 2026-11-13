@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -17,6 +17,13 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 
 const description =
   "Layered Labs is a research lab in New York City. We test whether medical AI is fair, accurate and private, and we publish the data behind every test.";
+
+// The site is designed light only. "only light" also stops browsers (Chrome's
+// auto dark mode, Samsung Internet) from force-darkening it.
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#FFFFFF",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://layeredlabs.ai"),
