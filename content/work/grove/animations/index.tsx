@@ -1,15 +1,16 @@
 "use client";
 
 import { defineAnimations } from "@/components/writeup/animation-player";
-import How, { HOW_SECONDS } from "./how";
+import Setup, { SETUP_SECONDS } from "./setup";
 
-export default defineAnimations("app", {
-  how: {
-    component: How,
-    seconds: HOW_SECONDS,
+export default defineAnimations("experiment", {
+  setup: {
+    component: Setup,
+    seconds: SETUP_SECONDS,
     wide: true,
-    caption: "Grove gets ready once, on your device. After that you ask, and it answers right there, even with no internet.",
+    caption:
+      "The model files cross the connection once. After that the connection is switched off and Grove still answers, because the model is running on the device.",
     description:
-      "The Grove app in three steps: the welcome screen shows the model getting ready and then a check, the app is saved on the device so it works offline, then a person types a question, sends it, and the answer appears word by word.",
+      "A diagram with the internet on the left and a device on the right. Model files travel to the device once, shown as a progress bar that turns into a check. The connection is then marked offline, and a question typed on the device is still answered, word by word, by the model running there.",
   },
 });
