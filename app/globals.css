@@ -109,7 +109,8 @@ a.ix:hover .ixc { text-decoration: underline; text-underline-offset: 4px; }
 a.ix:hover .ixgo { color: #0D0D0D; }
 a.ix:hover .ixgo span { transform: translateX(4px); }
 /* Apps in the list (item.app): their icon, the claim links to the write-up, and Open sits beside Read. */
-.lg-app { width: 26px; height: 26px; display: block; }
+.ix-app { grid-template-columns: 48px minmax(0, 1fr) auto; }
+.lg-app { width: 48px; height: 48px; display: block; }
 .ix-app .ixc { color: #0D0D0D; text-decoration: none; }
 .ix-app .ixc:hover { text-decoration: underline; text-underline-offset: 4px; }
 .ixacts { display: flex; align-items: center; gap: 22px; white-space: nowrap; }
@@ -307,8 +308,8 @@ h1 .mpill { font-size: 0.82em; vertical-align: 0.04em; }
 
 /* phones: app rows put their links under the text */
 @media (max-width: 760px) {
-  .ix-app { grid-template-columns: 22px minmax(0, 1fr); }
-  .lg-app { width: 22px; height: 22px; }
+  .ix-app { grid-template-columns: 40px minmax(0, 1fr); }
+  .lg-app { width: 40px; height: 40px; }
   .ix-app .ixacts { grid-column: 2; }
   .ixacts .ixgo { font-size: 15px; }
 }
