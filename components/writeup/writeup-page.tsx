@@ -25,6 +25,8 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
   const bodies = w.sections as Record<string, MDXContent>;
   const Animation = w.Animation as ComponentType<{ section: string }>;
   const app = item.app;
+  // An experiment is laid out as a research note: a question, a lead, unnumbered ruled sections.
+  const exp = w.format === "experiment";
   // Apps wear their own colours on their write-up (see AppInfo).
   const appColors = app
     ? ({ "--app-accent": app.colors.accent, "--app-soft": app.colors.soft, "--app-ink": app.colors.ink } as CSSProperties)
@@ -36,7 +38,7 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
       <SiteHeader />
       <main id="main">
         {app?.mark && <AppHero mark={app.mark} accent={app.colors.accent} soft={app.colors.soft} />}
-        <article className={app ? "wrap wu wu-grid wu-app" : "wrap wu wu-grid"} style={appColors}>
+        <article className={`${app ? "wrap wu wu-grid wu-app" : "wrap wu wu-grid"}${exp ? " wu-exp" : ""}`} style={appColors}>
           <header className="wu-head">
             {logo && (
               // eslint-disable-next-line @next/next/no-img-element
@@ -47,6 +49,7 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
               <span>{formatDate(w.published)}</span>
             </p>
             <h1>{w.title ?? item.claim}</h1>
+            {exp && <p className="wu-dek">{item.summary}</p>}
             {app && (
               <a className="wu-open" href={app.url}>
                 Open {app.name} <span aria-hidden="true">↗</span>
@@ -69,7 +72,7 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
             return (
               <section id={s.key} className="sec" key={s.key}>
                 <h2 className="sh">
-                  <em>{i + 1}</em>
+                  {!exp && <em>{i + 1}</em>}
                   {s.title}
                 </h2>
                 {isAnimated(s) && <Animation section={s.key} />}

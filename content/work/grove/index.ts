@@ -4,8 +4,8 @@ import writeup from "./writeup";
 export default defineItem({
   slug: "grove",
   type: "applied",
-  claim: "Ask anything, with nothing leaving your device.",
-  summary: "A free assistant that runs a 0.5B-parameter language model in the browser, so it is private and keeps working with no internet after the first load.",
+  claim: "Can a web browser run a small open model, and what is it good for?",
+  summary: "An experiment in running a small open-source language model on WebGPU, with nothing to install, to see how accessible local models can be and where they do well and fail.",
   href: "https://grove.layeredlabs.ai",
   app: {
     name: "Grove",
