@@ -64,9 +64,12 @@ export type AppInfo = {
   url: string;
   /** The app's brand colours: accent for links and buttons, soft for highlights, ink for text. */
   colors: { accent: string; soft: string; ink: string };
-  /** Optional seamless pattern tile under public/, drifting behind the top of the write-up. */
-  pattern?: string;
+  /** Optional mark, one path per part, shown as a calm animated band at the top of the write-up. */
+  mark?: AppMark;
 };
+
+/** An app's mark as separate parts, so each part can animate on its own. */
+export type AppMark = { viewBox: string; paths: string[] };
 
 export type WorkItem = {
   slug: string;

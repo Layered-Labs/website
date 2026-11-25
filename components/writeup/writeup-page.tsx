@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
 import { FORMATS, isAnimated, type SectionDef } from "@/lib/content/formats";
 import { TYPE_LABEL, type AnyWriteup, type WorkItem } from "@/lib/content/types";
+import { AppHero } from "./app-hero";
 import { Highlights } from "./highlights";
 
 // "YYYY-MM" as "November 2026". Pages show the month, never the day.
@@ -34,10 +35,7 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
     <>
       <SiteHeader />
       <main id="main">
-        {app?.pattern && (
-          // The app's pattern drifts behind the top of the page, then fades into white.
-          <div className="wu-hero" aria-hidden="true" style={{ "--app-pattern": `url(${app.pattern})` } as CSSProperties} />
-        )}
+        {app?.mark && <AppHero mark={app.mark} accent={app.colors.accent} soft={app.colors.soft} />}
         <article className={app ? "wrap wu wu-grid wu-app" : "wrap wu wu-grid"} style={appColors}>
           <header className="wu-head">
             {logo && (
