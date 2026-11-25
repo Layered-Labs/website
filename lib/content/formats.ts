@@ -53,18 +53,6 @@ export const FORMATS = {
       { key: "limitations", title: "Limitations", animated: false },
     ],
   },
-  experiment: {
-    label: "Experiment",
-    // An open question we are testing in public: a question, the setup with
-    // one figure, what is being measured, and the limits. Laid out as a note
-    // (see .wu-exp), not as a numbered paper.
-    sections: [
-      { key: "question", title: "The question", animated: false },
-      { key: "setup", title: "Model and setup" },
-      { key: "testing", title: "What we are testing", animated: false },
-      { key: "limits", title: "Limits", animated: false },
-    ],
-  },
 } as const;
 
 export type Format = keyof typeof FORMATS;
