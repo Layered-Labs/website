@@ -44,10 +44,11 @@ export const FORMATS = {
   },
   app: {
     label: "Application",
-    // A short write-up beside the app itself: no figures, so no animations.
+    // A short write-up beside the app itself. Only How it works has a figure:
+    // the app in use.
     sections: [
       { key: "summary", title: "Summary", animated: false },
-      { key: "how", title: "How it works", animated: false },
+      { key: "how", title: "How it works" },
       { key: "privacy", title: "Privacy", animated: false },
       { key: "limitations", title: "Limitations", animated: false },
     ],

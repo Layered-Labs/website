@@ -1,4 +1,5 @@
 import { defineWriteup } from "@/lib/content/types";
+import Animation from "./animations";
 import Summary from "./sections/summary.mdx";
 import How from "./sections/how.mdx";
 import Privacy from "./sections/privacy.mdx";
@@ -18,6 +19,5 @@ export default defineWriteup({
     { label: "Pocket TTS by Kyutai", href: "https://huggingface.co/kyutai/pocket-tts" },
   ],
   sections: { summary: Summary, how: How, privacy: Privacy, limitations: Limitations },
-  // App write-ups have no figures.
-  Animation: () => null,
+  Animation,
 });
