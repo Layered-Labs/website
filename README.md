@@ -37,7 +37,7 @@ The format follows what the work is:
 | `paper` | findings (Applied) | Abstract, Introduction, Methods, Results, Discussion, Limitations, Availability |
 | `software` | tools, and products for now | Summary, Statement of need, Design, Usage, Validation, Limitations, Availability |
 | `datasheet` | datasets | Summary, Motivation, Composition, Collection, Cleaning and labels, Uses, Distribution, Maintenance |
-| `app` | applications people can open | Summary, How it works, Privacy, Limitations (no animations) |
+| `app` | applications people can open | Summary, How it works (animated), Privacy, Limitations |
 
 Every section needs an `.mdx` file, and every animated section needs an animation: a missing one fails the typecheck. A section is animated unless `formats.ts` marks it `animated: false` (the abstract is).
 
