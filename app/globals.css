@@ -110,6 +110,7 @@ a.ix:hover .ixgo { color: #0D0D0D; }
 a.ix:hover .ixgo span { transform: translateX(4px); }
 /* Apps in the list (item.app): their icon, the claim links to the write-up, and Open sits beside Read. */
 .ix-app { grid-template-columns: 48px minmax(0, 1fr) auto; }
+.ixname { font-weight: 700; color: var(--app-accent); }
 .lg-app { width: 48px; height: 48px; display: block; }
 .ix-app .ixc { color: #0D0D0D; text-decoration: none; }
 .ix-app .ixc:hover { text-decoration: underline; text-underline-offset: 4px; }
