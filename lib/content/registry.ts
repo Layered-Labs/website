@@ -21,8 +21,22 @@ export function itemHref(item: WorkItem): string | undefined {
 }
 
 /** Plain data for client components (no MDX or animation code). */
-export type WorkRow = { slug: string; type: WorkType; claim: string; summary: string; href?: string };
+export type WorkRow = {
+  slug: string;
+  type: WorkType;
+  claim: string;
+  summary: string;
+  href?: string;
+  app?: { name: string; icon: string; url: string; accent: string };
+};
 
 export function workRows(): WorkRow[] {
-  return WORK.map((w) => ({ slug: w.slug, type: w.type, claim: w.claim, summary: w.summary, href: itemHref(w) }));
+  return WORK.map((w) => ({
+    slug: w.slug,
+    type: w.type,
+    claim: w.claim,
+    summary: w.summary,
+    href: itemHref(w),
+    app: w.app && { name: w.app.name, icon: w.app.icon, url: w.app.url, accent: w.app.colors.accent },
+  }));
 }

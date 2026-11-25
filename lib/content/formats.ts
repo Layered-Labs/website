@@ -1,6 +1,6 @@
 // Write-up formats. The format follows what the work is, not which filter it
 // sits under: a finding is a paper, software is a software paper, data is a
-// datasheet. Section keys are also the anchor ids and the file names in
+// datasheet, an app people can open is an app write-up. Section keys are also the anchor ids and the file names in
 // sections/ and animations/. Every section has an animation unless it is
 // marked `animated: false`.
 
@@ -40,6 +40,16 @@ export const FORMATS = {
       { key: "uses", title: "Uses" },
       { key: "distribution", title: "Distribution" },
       { key: "maintenance", title: "Maintenance" },
+    ],
+  },
+  app: {
+    label: "Application",
+    // A short write-up beside the app itself: no figures, so no animations.
+    sections: [
+      { key: "summary", title: "Summary", animated: false },
+      { key: "how", title: "How it works", animated: false },
+      { key: "privacy", title: "Privacy", animated: false },
+      { key: "limitations", title: "Limitations", animated: false },
     ],
   },
 } as const;

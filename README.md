@@ -37,6 +37,7 @@ The format follows what the work is:
 | `paper` | findings (Applied) | Abstract, Introduction, Methods, Results, Discussion, Limitations, Availability |
 | `software` | tools, and products for now | Summary, Statement of need, Design, Usage, Validation, Limitations, Availability |
 | `datasheet` | datasets | Summary, Motivation, Composition, Collection, Cleaning and labels, Uses, Distribution, Maintenance |
+| `app` | applications people can open | Summary, How it works, Privacy, Limitations (no animations) |
 
 Every section needs an `.mdx` file, and every animated section needs an animation: a missing one fails the typecheck. A section is animated unless `formats.ts` marks it `animated: false` (the abstract is).
 
@@ -44,6 +45,10 @@ Every section needs an `.mdx` file, and every animated section needs an animatio
 
 1. Create `content/work/<slug>/index.ts` with `defineItem({ slug, type, claim, summary, href })`.
 2. Add it to the list in `content/work/index.ts`.
+
+### Applications
+
+An item people can open and use gets an `app` field in its `index.ts` (`AppInfo` in `lib/content/types.ts`): name, square icon under `public/`, the app's URL, and its brand colours. The list then shows the app's icon with an Open link beside Read, and the write-up uses the `app` format and wears the app's colours (accent for links and the Open button, soft for highlights, ink for text) instead of the site's. See `content/work/wellspring/`.
 
 ### Start its write-up
 

@@ -51,6 +51,21 @@ export type Writeup<F extends Format = Format> = {
 
 export type AnyWriteup = { [F in Format]: Writeup<F> }[Format];
 
+/**
+ * An application people can open and use. An item with `app` is listed with the
+ * app's icon and an Open link beside Read, and its write-up page wears the
+ * app's own colours instead of the site's.
+ */
+export type AppInfo = {
+  name: string;
+  /** Square app icon under public/. */
+  icon: string;
+  /** Where the app runs. */
+  url: string;
+  /** The app's brand colours: accent for links and buttons, soft for highlights, ink for text. */
+  colors: { accent: string; soft: string; ink: string };
+};
+
 export type WorkItem = {
   slug: string;
   type: WorkType;
@@ -61,6 +76,8 @@ export type WorkItem = {
   /** External page (dataset, demo, repo). Used until a write-up is live. */
   href?: string;
   writeup?: AnyWriteup;
+  /** Set when the work is an app people can open (see AppInfo). */
+  app?: AppInfo;
 };
 
 /** Ties a write-up together; infers the format so section keys are checked. */
