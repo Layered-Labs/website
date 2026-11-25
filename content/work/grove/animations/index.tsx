@@ -1,24 +1,15 @@
 "use client";
 
 import { defineAnimations } from "@/components/writeup/animation-player";
-import { Steps, fig } from "@/components/writeup/anim/figures";
+import How, { HOW_SECONDS } from "./how";
 
 export default defineAnimations("app", {
-  how: fig(
-    Steps,
-    {
-      steps: [
-        { title: "Download once", note: "The model files come from Hugging Face", icon: "globe" },
-        { title: "Go offline", note: "No connection needed after that", icon: "wifi" },
-        { title: "Ask on the device", note: "WebGPU runs the model here", icon: "model" },
-        { title: "Read the answer", note: "Nothing is sent anywhere", icon: "chat" },
-      ],
-    },
-    "The model files cross the connection once. After that Grove keeps answering with the connection off, because the model runs on the device.",
-    {
-      wide: true,
-      description:
-        "Four steps joined by arrows: download the model once, go offline, ask a question on the device where WebGPU runs the model, and read the answer, with nothing sent anywhere.",
-    },
-  ),
+  how: {
+    component: How,
+    seconds: HOW_SECONDS,
+    wide: true,
+    caption: "Grove gets ready once, on your device. After that you ask, and the model on the device answers, even with no internet.",
+    description:
+      "The Grove app in three steps: the welcome screen shows the model getting ready and then a check, the app is saved on the device so it works offline, then a person types a question, sends it, and the answer appears word by word with a note that the device is offline and Grove is still working.",
+  },
 });
