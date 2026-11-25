@@ -12,6 +12,7 @@ export default defineItem({
     icon: "/logos/wellspring.svg",
     url: "https://wellspring.layeredlabs.ai",
     colors: { accent: "#2340D6", soft: "#E9EDFD", ink: "#0B0B0D" },
+    pattern: "/logos/wellspring-pattern.svg",
   },
   writeup,
 });
