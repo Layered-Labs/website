@@ -311,6 +311,8 @@ h1 .mpill { font-size: 0.82em; vertical-align: 0.04em; }
 .wu-hero svg.play path:nth-child(3) { animation-delay: .28s; }
 .wu-hero svg.play path:nth-child(4) { animation-delay: .42s; }
 @keyframes wu-stripe { 0% { opacity: 1; } 18% { opacity: 0; transform: translateX(-40px); } 60%, 100% { opacity: 1; transform: none; } }
+.wu-hero.drop svg.play path { animation-name: wu-drop; }
+@keyframes wu-drop { 0% { opacity: 1; } 18% { opacity: 0; transform: translateY(-40px); } 60%, 100% { opacity: 1; transform: none; } }
 .wu-hero + .wu { padding-top: 0; margin-top: calc(-1 * clamp(32px, 5vw, 72px)); position: relative; }
 .wu-open { align-self: flex-start; margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; background: var(--app-accent); color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 500; }
 .wu-app a.wu-open:hover { color: #FFFFFF; background: color-mix(in srgb, var(--app-accent) 86%, #000); }
