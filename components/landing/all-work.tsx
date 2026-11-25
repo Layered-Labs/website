@@ -74,12 +74,15 @@ export function AllWork({ items: all }: { items: WorkRow[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img className="lg lg-app" src={app.icon} alt={app.name} />
                 <span className="ixb">
+                  {/* Apps lead with their name, so people know what it is called. */}
                   {item.href ? (
                     <a className="ixc" href={item.href}>
-                      {item.claim}
+                      <strong className="ixname">{app.name}:</strong> {item.claim}
                     </a>
                   ) : (
-                    <span className="ixc">{item.claim}</span>
+                    <span className="ixc">
+                      <strong className="ixname">{app.name}:</strong> {item.claim}
+                    </span>
                   )}
                   <span className="ixs">{item.summary}</span>
                 </span>
