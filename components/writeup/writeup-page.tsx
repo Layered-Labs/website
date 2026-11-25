@@ -34,6 +34,10 @@ export function WriteupPage({ item, writeup: w }: { item: WorkItem; writeup: Any
     <>
       <SiteHeader />
       <main id="main">
+        {app?.pattern && (
+          // The app's pattern drifts behind the top of the page, then fades into white.
+          <div className="wu-hero" aria-hidden="true" style={{ "--app-pattern": `url(${app.pattern})` } as CSSProperties} />
+        )}
         <article className={app ? "wrap wu wu-grid wu-app" : "wrap wu wu-grid"} style={appColors}>
           <header className="wu-head">
             {logo && (

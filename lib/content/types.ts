@@ -64,6 +64,8 @@ export type AppInfo = {
   url: string;
   /** The app's brand colours: accent for links and buttons, soft for highlights, ink for text. */
   colors: { accent: string; soft: string; ink: string };
+  /** Optional seamless pattern tile under public/, drifting behind the top of the write-up. */
+  pattern?: string;
 };
 
 export type WorkItem = {

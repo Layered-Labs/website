@@ -298,6 +298,11 @@ h1 .mpill { font-size: 0.82em; vertical-align: 0.04em; }
 .wu-app .prose blockquote { border-left-color: var(--app-accent); }
 .wu-app .wu-endlinks a { text-decoration-color: var(--app-accent); }
 .wu-app .wu-logo { width: 64px; height: 64px; }
+/* App pattern band: tiles drift diagonally by exactly one tile per loop, so it never jumps. */
+.wu-hero { height: clamp(200px, 26vw, 340px); background: var(--app-pattern) 0 0 / 128px 256px repeat; animation: wu-drift 28s linear infinite; -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent); mask-image: linear-gradient(to bottom, #000 30%, transparent); }
+.wu-hero + .wu { padding-top: 0; margin-top: calc(-1 * clamp(40px, 6vw, 96px)); position: relative; }
+@keyframes wu-drift { to { background-position: 128px 256px; } }
+@media (prefers-reduced-motion: reduce) { .wu-hero { animation: none; } }
 .wu-open { align-self: flex-start; margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; background: var(--app-accent); color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 500; }
 .wu-app a.wu-open:hover { color: #FFFFFF; background: color-mix(in srgb, var(--app-accent) 86%, #000); }
 
