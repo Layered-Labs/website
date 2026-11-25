@@ -1,0 +1,24 @@
+Grove runs <ModelPill model="qwen" label="Qwen2.5 0.5B Instruct" /> through [WebLLM](https://github.com/mlc-ai/web-llm). WebGPU lets the browser use the device's graphics chip, so the model runs on the machine in front of the person. The app names the model beside the chat box, and this is the card it shows.
+
+<Table
+  data={{
+    first: "Property",
+    columns: [{ label: "Value", align: "left" }],
+    rows: [
+      { label: "Model", model: "qwen", cells: ["Qwen2.5 0.5B Instruct"] },
+      { label: "Tag", cells: ["qwen2.5:0.5b-instruct-q4f16_1"] },
+      { label: "Made by", cells: ["Alibaba Cloud (Qwen team)"] },
+      { label: "Parameters", cells: ["0.5B"] },
+      { label: "Quantization", cells: ["q4f16_1 (4-bit weights)"] },
+      { label: "Context", cells: ["4,096 tokens"] },
+      { label: "Memory", cells: ["About 945 MB of GPU memory"] },
+      { label: "License", cells: ["Apache 2.0"] },
+      { label: "Runs with", cells: ["WebLLM, on WebGPU"] },
+    ],
+    caption: "The model Grove runs, as the app lists it.",
+  }}
+/>
+
+The model files download once, a few hundred megabytes, from Hugging Face. The browser keeps them, so later visits open straight into the chat and work with no connection.
+
+We are testing how many steps and how much waiting it takes to get from a link to a first answer, and which phones and laptops can run it. For quality, we expect a 0.5B-parameter model to suit rewriting, explaining a simple idea and drafting a short message, and to struggle with arithmetic, recalling facts, long reasoning and languages other than English. These are expectations we want to measure, not results: Grove has not been benchmarked yet.
