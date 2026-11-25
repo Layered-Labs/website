@@ -8,7 +8,6 @@ import { C, Stage, mix, tween, useTime } from "@/components/writeup/anim/kit";
 // Neutrals come from the shared kit; green and soft are Grove's own accent.
 const G = { ink: C.ink, body: C.text, muted: C.soft, line: C.rule, card: C.track, green: "#0B6B43", soft: "#E4F2E8" };
 
-const TAG = "qwen2.5:0.5b-instruct-q4f16_1";
 const QUESTION = "Explain compound interest as if I am new to it.";
 const REPLY =
   "Compound interest means you earn interest on your interest. Put in $100 at 5% and after a year you have $105. The next year you earn 5% on $105, not on $100.";
@@ -69,16 +68,6 @@ function Bars({ t }: { t: number }) {
       {[0, 1, 2, 3].map((i) => (
         <span key={i} style={{ width: 4, height: "100%", borderRadius: 999, background: G.green, transform: `scaleY(${0.25 + 0.75 * Math.abs(Math.sin(t * 6 + i * 0.9))})` }} />
       ))}
-    </span>
-  );
-}
-
-/** The model tag, as the app shows it next to the chat box. */
-function Chip() {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 8, height: 30, padding: "0 10px", border: `1px solid ${G.line}`, borderRadius: 8, fontSize: 12.5, color: G.body, background: "#FFFFFF" }}>
-      <span style={{ fontFamily: "var(--font-mono), ui-monospace, monospace" }}>{TAG}</span>
-      <span style={{ color: G.green, fontWeight: 500, fontSize: 13 }}>Details</span>
     </span>
   );
 }
@@ -146,7 +135,6 @@ export default function How() {
             Privately.
           </div>
           <div style={{ fontSize: 15, color: G.muted }}>Free. Runs on this device.</div>
-          <Chip />
           <div
             style={{
               display: "flex",
@@ -235,8 +223,7 @@ export default function How() {
               </svg>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, fontSize: 13, color: offline ? "#B42318" : G.muted }}>
-            <Chip />
+          <div style={{ textAlign: "center", fontSize: 13, color: offline ? "#B42318" : G.muted }}>
             {offline ? "You are offline. Grove is still working." : "Runs on this device. Nothing is sent anywhere."}
           </div>
         </Layer>
