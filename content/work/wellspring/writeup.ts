@@ -10,7 +10,7 @@ export default defineWriteup({
   published: "2026-11",
   highlights: [
     { value: "10 s", label: "of audio to clone a voice" },
-    { value: "0", label: "recordings sent to a server", lime: true },
+    { value: "100M", label: "parameter voice model, running in your browser", lime: true },
     { value: "160 MB", label: "downloaded once, then offline" },
   ],
   links: [
