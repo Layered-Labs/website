@@ -6,7 +6,7 @@ import fastSlowOrtho from "./fast-slow-ortho";
 import triageBias from "./triage-bias";
 import noJailbreakRequired from "./no-jailbreak-required";
 import benchbase from "./benchbase";
-import owynn from "./owynn";
+import wellspring from "./wellspring";
 import acne04 from "./acne04";
 import fableDerm from "./fable-derm";
 import clearwrist from "./clearwrist";
@@ -18,7 +18,7 @@ export const WORK_ITEMS: WorkItem[] = [
   triageBias,
   noJailbreakRequired,
   benchbase,
-  owynn,
+  wellspring,
   acne04,
   fableDerm,
   clearwrist,
