@@ -1,0 +1,5 @@
+Wellspring runs [Pocket TTS](https://huggingface.co/kyutai/pocket-tts), a 100M-parameter voice model from Kyutai, through an INT8 ONNX export in ONNX Runtime Web. Everything happens on the device, in a background worker so the page stays responsive.
+
+- **Cloning.** The recording is trimmed, normalised and resampled to 24 kHz, then encoded once into a voice profile that is saved on the device. For uploaded files, Wellspring picks the ten seconds with the most speech, so intros and pauses do not matter.
+- **Speaking.** Each message is split into short chunks, turned into speech one chunk at a time and played back. Common phrases are prepared ahead so they play instantly, and longer messages show a countdown while they are made.
+- **Offline.** The model downloads once, about 160 MB, while the person reads the welcome screen and records. After that it is cached and works without a connection.

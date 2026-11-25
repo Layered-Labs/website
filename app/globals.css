@@ -108,6 +108,16 @@ a.ix:hover { color: #0D0D0D; }
 a.ix:hover .ixc { text-decoration: underline; text-underline-offset: 4px; }
 a.ix:hover .ixgo { color: #0D0D0D; }
 a.ix:hover .ixgo span { transform: translateX(4px); }
+/* Apps in the list (item.app): their icon, the claim links to the write-up, and Open sits beside Read. */
+.lg-app { width: 26px; height: 26px; display: block; }
+.ix-app .ixc { color: #0D0D0D; text-decoration: none; }
+.ix-app .ixc:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ixacts { display: flex; align-items: center; gap: 22px; white-space: nowrap; }
+.ixacts .ixgo { text-decoration: none; }
+.ixacts .ixgo:hover { color: #0D0D0D; }
+.ixacts .ixgo:hover span { transform: translateX(4px); }
+.ixopen { font-size: 15px; font-weight: 500; color: var(--app-accent); text-decoration: none; }
+.ixopen:hover { color: var(--app-accent); text-decoration: underline; text-underline-offset: 4px; }
 
 /* filter change: rows rise and fade in, staggered 40ms apart */
 @keyframes ix-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -276,7 +286,29 @@ h1 .mpill { font-size: 0.82em; vertical-align: 0.04em; }
 .dtbl-group b { font-weight: 500; color: #0D0D0D; }
 .dtbl-group span::before { content: "\00B7"; margin: 0 10px; color: #CFCFCF; }
 
+/* Application write-ups (item.app): the page wears the app's colours, not the site's. */
+.wu-app { color: var(--app-ink); }
+.wu-app a:hover, .wu-app .wu-kicker a:hover, .wu-app .wu-actions a:hover { color: var(--app-accent); }
+.wu-app a:focus-visible { outline-color: var(--app-accent); }
+.wu-app .sh em { color: var(--app-accent); font-weight: 500; }
+.wu-app .hl, .wu-app .wu-hl dt.lime { background: var(--app-soft); }
+.wu-app .prose a { text-decoration-color: var(--app-accent); }
+.wu-app .prose a:hover { color: var(--app-accent); }
+.wu-app .prose blockquote { border-left-color: var(--app-accent); }
+.wu-app .wu-endlinks a { text-decoration-color: var(--app-accent); }
+.wu-app .wu-logo { width: 64px; height: 64px; }
+.wu-open { align-self: flex-start; margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; background: var(--app-accent); color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 500; }
+.wu-app a.wu-open:hover { color: #FFFFFF; background: color-mix(in srgb, var(--app-accent) 86%, #000); }
+
 /* phones: after every write-up rule so these win (ortho page breakpoint) */
 @media (max-width: 760px) {
   .sec { padding-top: 48px; }
+}
+
+/* phones: app rows put their links under the text */
+@media (max-width: 760px) {
+  .ix-app { grid-template-columns: 22px minmax(0, 1fr); }
+  .lg-app { width: 22px; height: 22px; }
+  .ix-app .ixacts { grid-column: 2; }
+  .ixacts .ixgo { font-size: 15px; }
 }

@@ -66,6 +66,36 @@ export function AllWork({ items: all }: { items: WorkRow[] }) {
       <div className={animate ? "ixl ixl-anim" : "ixl"} key={filter}>
         {items.map((item, i) => {
           const order = { "--i": i } as React.CSSProperties;
+          if (item.app) {
+            // An app: its own icon, a link into the app, and Read for the write-up.
+            const app = item.app;
+            return (
+              <div className="ix ix-app" key={item.slug} style={{ ...order, "--app-accent": app.accent } as React.CSSProperties}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="lg lg-app" src={app.icon} alt={app.name} />
+                <span className="ixb">
+                  {item.href ? (
+                    <a className="ixc" href={item.href}>
+                      {item.claim}
+                    </a>
+                  ) : (
+                    <span className="ixc">{item.claim}</span>
+                  )}
+                  <span className="ixs">{item.summary}</span>
+                </span>
+                <span className="ixacts">
+                  <a className="ixopen" href={app.url}>
+                    Open {app.name} <span aria-hidden="true">↗</span>
+                  </a>
+                  {item.href && (
+                    <a className="ixgo" href={item.href}>
+                      Read <span aria-hidden="true">→</span>
+                    </a>
+                  )}
+                </span>
+              </div>
+            );
+          }
           const body = (
             <>
               <Mark className="lg" lit={TYPE_LIT[item.type]} label={TYPE_LABEL[item.type]} />
