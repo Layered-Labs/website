@@ -47,7 +47,7 @@ export function AppHero({ mark, accent, soft }: { mark: AppMark; accent: string;
   const cells = Array.from({ length: COLS * ROWS }, (_, i) => i);
   return (
     <div
-      className="wu-hero"
+      className={mark.drop ? "wu-hero drop" : "wu-hero"}
       ref={ref}
       aria-hidden="true"
       style={{ "--app-accent": accent, "--app-soft": soft } as CSSProperties}

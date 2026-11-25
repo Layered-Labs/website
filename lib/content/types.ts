@@ -69,7 +69,12 @@ export type AppInfo = {
 };
 
 /** An app's mark as separate parts, so each part can animate on its own. */
-export type AppMark = { viewBox: string; paths: string[] };
+export type AppMark = {
+  viewBox: string;
+  paths: string[];
+  /** Parts enter from above, first part first, instead of from the left. */
+  drop?: boolean;
+};
 
 export type WorkItem = {
   slug: string;
