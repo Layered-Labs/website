@@ -15,7 +15,7 @@ export function Hero() {
         </a>
       </div>
       <div className="stat">
-        <span className="stat-n hl">9,600+</span>
+        <span className="stat-n hl">11,800+</span>
         <span className="stat-l">Dataset downloads on Hugging Face</span>
       </div>
     </section>
